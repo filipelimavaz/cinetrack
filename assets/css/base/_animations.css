@@ -1,0 +1,30 @@
+@keyframes showFade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    0%{
+        height: 0;
+        opacity: 0.5;
+    }
+    100%{
+        height: 100%;
+        opacity: 1;
+    }
+}
+
+@keyframes slideLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem)
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0rem);
+    }
+}

@@ -1,0 +1,23 @@
+.controls-slider {
+    position: absolute;
+    cursor: pointer;
+    z-index: 2;
+    bottom: 0;
+    right: 0;
+}
+
+.controls-slider_item {
+    background: none;
+    color: #8c93a1;
+    margin: 0 0.5rem;
+}
+
+.controls-slider_item::before {
+    content: '\f111';
+    font-family: 'Font Awesome 6 Free';
+    font-size: 0.7rem;
+}
+
+.controls-slider_item.active {
+    color: #ffffff;
+}
