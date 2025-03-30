@@ -6,6 +6,10 @@ const bannerSliderModule = () => {
     const btnControls = document.querySelectorAll('[data-banner="btn-control"]')
     const imgTitles = document.querySelectorAll('[data-banner="img-title"]')
 
+    if (!slider || !btnNext || !btnPrevious || btnControls.length === 0 || imgTitles.length === 0) {
+        return;
+    }
+
     const state = {
         mouseDownPosition: 0,
         movementPosition: 0,
@@ -19,9 +23,12 @@ const bannerSliderModule = () => {
     }
 
     function translateSlide(position) {
-        state.lastTranslatePosition = position
-        slider.style.transform = `translateX(${position}px)`
+        if (slider) {
+            state.lastTranslatePosition = position
+            slider.style.transform = `translateX(${position}px)`
+        }
     }
+    
 
     function forwardSlide() {
         if(state.currentSlideIndex < sliderItens.length - 1) {
@@ -138,9 +145,11 @@ const bannerSliderModule = () => {
     }
 
     function setArrowButtonsDisplay() {
-        btnPrevious.style.display = state.currentSlideIndex === 0 ? 'none' : 'block'
-        btnNext.style.display = state.currentSlideIndex === (sliderItens.length - 1) ? 'none' : 'block'
-    }
+        if (btnPrevious && btnNext) {
+            btnPrevious.style.display = state.currentSlideIndex === 0 ? 'none' : 'block'
+            btnNext.style.display = state.currentSlideIndex === (sliderItens.length - 1) ? 'none' : 'block'
+        }
+    }    
 
     function setListeners(){
         btnNext.addEventListener('click', forwardSlide)

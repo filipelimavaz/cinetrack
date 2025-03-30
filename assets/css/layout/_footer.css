@@ -2,6 +2,9 @@
     background: #090b13;
     padding: 2.3rem 0 2.6rem;
     text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer_wrapper {
@@ -41,7 +44,6 @@
 }
 
 @media screen and (max-width: 1080px) {
-    
     .footer {
         padding-inline: 1rem;
     }
@@ -51,3 +53,4 @@
         flex-wrap: wrap;
     }
 }
+

@@ -1,0 +1,111 @@
+.container-sign-in {
+    align-items: center;
+    display: flex;
+    padding-top: 9.7rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 80vh;
+}
+
+.sign-in {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 50rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 0 auto;
+}
+
+.sign-in h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #333;
+}
+
+.sign-in form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sign-in input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    position: relative;
+    width: 100%;
+}
+
+.sign-in input::placeholder {
+    color: transparent;
+}
+
+.sign-in input:focus {
+    border-color: #007bff;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.input-container label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    color: #999;
+    transition: 0.3s ease;
+}
+
+.sign-in input:focus + label,
+.sign-in input:not(:placeholder-shown) + label {
+    top: -15px;
+    font-size: 12px;
+    color: #007bff;
+}
+
+.input-container--invalid .input {
+    border-color: red;
+}
+
+.input-container--invalid label {
+    color: red;
+}
+
+.btn-signin {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-signin:hover {
+    background-color: #0056b3;
+}
+
+.input-erro-message {
+    display: none;
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.input-container--invalid .input-erro-message {
+    display: flex;
+    align-self: left;
+}

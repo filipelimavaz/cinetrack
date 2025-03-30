@@ -12,31 +12,41 @@ const Home = (data) => {
     const controlsSliderElement = document.querySelector('[data-banner="controls-slider"]')
     const bannerSliderElement = document.querySelector('[data-banner="slider"]')
     const collectionsElement = document.querySelector('[data-carousel="collections"]')
-    //const movieCarrouselListElement = document.querySelector('[]')
     const { banners, categories, movies, userProfiles } = data
 
-    for(const item of userProfiles) {
-        userProfilesElement.innerHTML = userProfilesElement.innerHTML + UserProfile(item)
+    if (userProfilesElement != null) {
+        for (const item of userProfiles) {
+            userProfilesElement.innerHTML += UserProfile(item)
+        }
     }
 
-    for(const banner of banners) {
-        bannerSliderElement.innerHTML += BannerSliderItem(banner)
-        controlsSliderElement.innerHTML += ControlSliderItem() 
+    if (bannerSliderElement != null) {
+        for (const banner of banners) {
+            bannerSliderElement.innerHTML += BannerSliderItem(banner)
+            controlsSliderElement.innerHTML += ControlSliderItem() 
+        }
     }
 
-    for(const category of categories) {
-        collectionsElement.innerHTML += Collection(category)
-        const collectionElement = document.querySelector(`[data-id="${category.id}"]`)
-        const movieCarrouselListElement = collectionElement.querySelector('[data-carousel="list"]')
-        const collectionMovies = movies.filter((movie) => movie.categories.includes(category.id))
-        for(const movie of collectionMovies) {
-            movieCarrouselListElement.innerHTML += MovieCarrouselItem(movie)
+    if (collectionsElement != null) {
+        for (const category of categories) {
+            collectionsElement.innerHTML += Collection(category)
+            const collectionElement = document.querySelector(`[data-id="${category.id}"]`)
+            const movieCarrouselListElement = collectionElement.querySelector('[data-carousel="list"]')
+            const collectionMovies = movies.filter((movie) => movie.categories.includes(category.id))
+            for (const movie of collectionMovies) {
+                movieCarrouselListElement.innerHTML += MovieCarrouselItem(movie)
+            }
         }
     }
 
     headerModule().init()
-    bannerSliderModule().init()
+    
+    const bannerSlider = bannerSliderModule();
+    if (bannerSlider && typeof bannerSlider.init === 'function') {
+        bannerSlider.init();
+    }
+
     collectionsModule().init()
 }
 
-export default Home
+export default Home;
