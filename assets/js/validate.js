@@ -1,4 +1,3 @@
-// Seleção dos campos do formulário
 const form = document.getElementById('signInForm');
 const nome = document.getElementById('nome');
 const email = document.getElementById('email');
@@ -10,20 +9,20 @@ form.addEventListener('submit', function (event) {
 
     let isValid = true;
 
-    isValid &= validateNome(nome);
+    if (nome) isValid &= validateNome(nome);
     isValid &= validateEmail(email);
     isValid &= validateSenha(senha);
-    isValid &= validateConfirmacaoSenha(confirmacaoSenha);
+    if (confirmacaoSenha) isValid &= validateConfirmacaoSenha(confirmacaoSenha);
 
     if (isValid) {
         window.location.href = './index-login.html';
     }
 });
 
-nome.addEventListener('blur', () => validateNome(nome));
+if (nome) nome.addEventListener('blur', () => validateNome(nome));
 email.addEventListener('blur', () => validateEmail(email));
 senha.addEventListener('blur', () => validateSenha(senha));
-confirmacaoSenha.addEventListener('blur', () => validateConfirmacaoSenha(confirmacaoSenha));
+if (confirmacaoSenha) confirmacaoSenha.addEventListener('blur', () => validateConfirmacaoSenha(confirmacaoSenha));
 
 function validateNome(input) {
     let isValid = true;
@@ -78,14 +77,14 @@ function validateConfirmacaoSenha(input) {
 
 function showError(input, message) {
     const container = input.closest('.input-container');
-    const error = container.querySelector('.input-erro-message');
+    const error = container.querySelector('.input-error-message');
     container.classList.add('input-container--invalid');
     error.textContent = message;
 }
 
 function removeError(input) {
     const container = input.closest('.input-container');
-    const error = container.querySelector('.input-erro-message');
+    const error = container.querySelector('.input-error-message');
     container.classList.remove('input-container--invalid');
     error.textContent = '';
 }

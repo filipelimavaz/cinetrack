@@ -93,47 +93,29 @@
             </nav>
         </header>
         <main>
-            <section class="banners">
-                <button class="arrow-slider arrow-slider-left" data-banner="btn-previous"></button>
-                <button class="arrow-slider arrow-slider-right" data-banner="btn-next"></button>
-                <div class="controls-slider" data-banner="controls-slider"></div>
-                <div class="banner-slider" data-banner="slider"></div>
+            <section class="login-section">
+                <div class="login-container">
+                    <div class="login-image">
+                        <img src="./assets/imgs/login-image.png" alt="Imagem de Login">
+                    </div>
+                    <div class="login-form">
+                        <h2>Entrar</h2>
+                        <form id="signInForm" novalidate>
+                            <div class="input-container">
+                                <input type="email" id="email" name="email" placeholder="E-mail" required>
+                                <label for="email">E-mail</label>
+                                <span class="input-error-message">Este campo é obrigatório e deve ser um e-mail válido.</span>
+                            </div>
+                            <div class="input-container">
+                                <input type="password" id="senha" name="senha" placeholder="Senha" required>
+                                <label for="senha">Senha</label>
+                                <span class="input-error-message">A senha deve ter entre 6 e 12 caracteres.</span>
+                            </div>
+                            <button type="submit" class="btn-signin">Entrar</button>
+                        </form>                        
+                    </div>
+                </div>
             </section>
-            <section class="categories">
-                <ul class="category-menu">
-                    <li class="category-menu_item">
-                        <video class="category-menu_video" src="./assets/videos/category-disney.mp4" autoplay loop muted></video>
-                        <a class="category-menu_link" href="/">
-                            <img class="category-menu_image" src="./assets/imgs/categories/disney.png" alt="Disney Logo"/>
-                        </a>
-                    </li>
-                    <li class="category-menu_item">
-                        <video class="category-menu_video" src="./assets/videos/category-pixar.mp4" autoplay loop muted></video>
-                        <a class="category-menu_link" href="/">
-                            <img class="category-menu_image" src="./assets/imgs/categories/pixar.png" alt="Pixar Logo"/>
-                        </a>
-                    </li>
-                    <li class="category-menu_item">
-                        <video class="category-menu_video" src="./assets/videos/category-marvel.mp4" autoplay loop muted></video>
-                        <a class="category-menu_link" href="/">
-                            <img class="category-menu_image" src="./assets/imgs/categories/marvel.png" alt="Marvel Logo"/>
-                        </a>
-                    </li>
-                    <li class="category-menu_item">
-                        <video class="category-menu_video" src="./assets/videos/category-star-wars.mp4" autoplay loop muted></video>
-                        <a class="category-menu_link" href="/">
-                            <img class="category-menu_image" src="./assets/imgs/categories/star-wars.png" alt="Star Wars Logo"/>
-                        </a>
-                    </li>
-                    <li class="category-menu_item">
-                        <video class="category-menu_video" src="./assets/videos/category-national-geographic.mp4" autoplay loop muted></video>
-                        <a class="category-menu_link" href="/">
-                            <img class="category-menu_image" src="./assets/imgs/categories/national-geographic.png" alt="National Geographic Logo"/>
-                        </a>
-                    </li>
-                </ul>
-            </section>
-            <section class="collections" data-carousel="collections"></section>
         </main>
         <footer class="footer">
             <div class="footer_wrapper">
@@ -178,5 +160,6 @@
         </footer>
     </div>
     <script type="module" src="./assets/js/app.js"></script>
+    <script type="module" src="./assets/js/validate.js"></script>
 </body>
 </html>

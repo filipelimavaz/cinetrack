@@ -83,10 +83,10 @@
 
                     <ul class="user-menu_options show-hover">
                         <li class="user-menu_item">
-                            <a class="user-menu_link" href="/">Entrar</a>
+                            <a class="user-menu_link" href="./login.html">Entrar</a>
                         </li>
                         <li class="user-menu_item">
-                            <a class="user-menu_link" href="/">Cadastre-se</a>
+                            <a class="user-menu_link" href="./sign-in.html">Cadastre-se</a>
                         </li>
                     </ul>
                 </div>
@@ -97,35 +97,26 @@
                 <div class="sign-in">
                     <h2>Cadastre-se</h2>
                     <form id="signInForm" novalidate>
-                        <!-- Nome -->
                         <div class="input-container">
                             <input type="text" id="nome" name="nome" placeholder="Nome" required>
                             <label for="nome">Nome</label>
                             <span class="input-erro-message">Este campo é obrigatório.</span>
                         </div>
-                    
-                        <!-- Email -->
                         <div class="input-container">
                             <input type="email" id="email" name="email" placeholder="E-mail" required>
                             <label for="email">E-mail</label>
                             <span class="input-erro-message">Este campo é obrigatório e deve ser um e-mail válido.</span>
                         </div>
-                    
-                        <!-- Senha -->
                         <div class="input-container">
                             <input type="password" id="senha" name="senha" placeholder="Senha" required>
                             <label for="senha">Senha</label>
                             <span class="input-erro-message">A senha deve ter entre 6 e 12 caracteres.</span>
                         </div>
-                    
-                        <!-- Confirmação de Senha -->
                         <div class="input-container">
                             <input type="password" id="confirmacao-senha" name="confirmacao-senha" placeholder="Confirmação de Senha" required>
                             <label for="confirmacao-senha">Confirmação de Senha</label>
                             <span class="input-erro-message">As senhas não coincidem.</span>
                         </div>
-                    
-                        <!-- Botão de Cadastro -->
                         <button type="submit" class="btn-signin">Cadastrar</button>
                     </form>                                       
                 </div>
