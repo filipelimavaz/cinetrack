@@ -1,48 +1,22 @@
 {
     "data": {
         "banners": [
-            {
-                "id": "f7b52384-9133-4649-a25a-f7011aead174",
-                "title": "Bem Vindos à Terra",
-                "imageCover": "/content/media/banners/bem-vindos-a-terra.jpeg",
-                "imageTitle": "/content/media/banners/bem-vindos-a-terra-titulo.png",
-                "slug": "bem-vindos-a-terra"
-            },
-            {
-                "id": "74d17ffa-34cd-49f6-a165-5db22fd3c150",
-                "title": "Dr. Estranho",
-                "imageCover": "/content/media/banners/dr-estranho.jpeg",
-                "imageTitle": "/content/media/banners/dr-estranho-titulo.png",
-                "slug": "dr-estranho"
-            },
-            {
-                "id": "32c36389-f34f-41e5-8437-2d76251dd67f",
-                "title": "Encanto",
-                "imageCover": "/content/media/banners/encanto.jpeg",
-                "imageTitle": "/content/media/banners/encanto-titulo.png",
-                "slug": "encanto"
-            },
-            {
-                "id": "f2ae10ac-262b-4e1a-94d2-c596ec6c1804",
-                "title": "Gavião Arqueiro",
-                "imageCover": "/content/media/banners/gaviao-arqueiro.jpeg",
-                "imageTitle": "/content/media/banners/gaviao-arqueiro-titulo.png",
-                "slug": "gaviao-arqueiro"
-            },
-            {
-                "id": "42e6ce81-44e2-4f7a-b052-d567abfd09c6",
-                "title": "Homem-Aranha",
-                "imageCover": "/content/media/banners/homem-aranha.jpeg",
-                "imageTitle": "/content/media/banners/homem-aranha-titulo.png",
-                "slug": "homem-aranha"
-            },
-            {
-                "id": "943dd837-5105-45ab-8c45-e869cff1687f",
-                "title": "The Mandalorian",
-                "imageCover": "/content/media/banners/the-mandalorian.jpeg",
-                "imageTitle": "/content/media/banners/the-mandalorian-titulo.png",
-                "slug": "the-mandalorian"
-            }
+            {"id": "f7b52384-9133-4649-a25a-f7011aeadjg3",
+                "title": "Batman",
+                "imageCover": "/content/media/banners/batman-banner.jpg",
+                "imageTitle": "/content/media/banners/batman-logo.png",
+                "slug": "Bladerunner"},
+            {"id": "f7b52384-9133-4649-a25a-f7011aeadp43",
+                "title": "Blade Runner",
+                "imageCover": "/content/media/banners/bladerunner-banner.jpg",
+                "imageTitle": "/content/media/banners/bladerunner-logo.png",
+                "slug": "Bladerunner"},
+
+            {"id": "f7b52384-9133-4649-a25a-f7011aead123",
+                "title": "Minecraft: O filme",
+                "imageCover": "/content/media/banners/minecraft-movie.jpg",
+                "imageTitle": "/content/media/banners/minecraft-movie-logo.png",
+                "slug": "Minecraft: O filme"}
         ],
         "categories": [
             {

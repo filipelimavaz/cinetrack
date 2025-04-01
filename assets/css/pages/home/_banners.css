@@ -1,6 +1,6 @@
 .banners {
     align-items: center;
-    display: flex;
+    display:flex;
     padding-top: 9.7rem;
     position: relative;
     overflow: hidden;
@@ -17,6 +17,7 @@
     padding: 0 1rem 3rem;
     position: relative;
     width: 91vw;
+    height: 38vw;
 }
 
 .banner-slider_item.active {
