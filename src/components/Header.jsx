@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
-import '../styles/Header.css'
+import '../styles/Header.css';
+
 function Header() {
   const { user, logout } = useUser();
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
+  const [showHeader, setShowHeader] = useState(true); // Estado para mostrar ou esconder o header
+  let lastScrollY = 0;
 
   const handleLogout = () => {
     logout();
@@ -20,9 +23,28 @@ function Header() {
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        // Rolando para baixo, esconde o header
+        setShowHeader(false);
+      } else if (window.scrollY < lastScrollY) {
+        // Rolando para cima, mostra o header
+        setShowHeader(true);
+      }
+      lastScrollY = window.scrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="header">
-      <h1 className="logo">CineTrack</h1>
+    <header className={`header ${showHeader ? '' : 'hidden'}`}>
+      <Link to="/home" className="logo">
+        <h1>CineTrack</h1>
+      </Link>
+
       {user && (
         <nav className="nav-links">
           <form onSubmit={handleSearch}>
@@ -33,8 +55,8 @@ function Header() {
               onChange={(e) => setQuery(e.target.value)}
             />
           </form>
-          
-          <Link to="/home" className="hover:underline">Home</Link>
+
+          <Link className="hover:underline">Home</Link>
           <Link to="/filmes" className="hover:underline">Filmes</Link>
           <Link to="/series" className="hover:underline">Séries</Link>
           <Link to="/sobre" className="hover:underline">Sobre</Link>

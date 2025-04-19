@@ -31,7 +31,9 @@ function ResultadoBusca() {
               src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
               alt={item.title || item.name}
             />
-            <Link to={`/avaliar/${item.media_type}/${item.id}`}>Avaliar</Link>
+            <Link to={`/avaliar/${item.media_type}/${item.id}`} className="avaliar-btn">
+              Avaliar
+            </Link>
           </div>
         ))}
       </div>
