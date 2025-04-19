@@ -29,7 +29,7 @@ const Home = () => {
 
   return (
     <div className="home-content">
-      <h2>Lançamentos</h2>
+      <h2> Lançamentos</h2>
       <div className="carousel-container">
         <button className="carousel-btn carousel-btn-left" onClick={() => handleScrollLeft(filmesRef)}>&lt;</button>
         <div className="carousel" ref={filmesRef}>
@@ -43,7 +43,7 @@ const Home = () => {
         <button className="carousel-btn carousel-btn-right" onClick={() => handleScrollRight(filmesRef)}>&gt;</button>
       </div>
 
-      <h2>Séries Populares</h2>
+      <h2> Séries Populares</h2>
       <div className="carousel-container">
         <button className="carousel-btn carousel-btn-left" onClick={() => handleScrollLeft(seriesRef)}>&lt;</button>
         <div className="carousel" ref={seriesRef}>

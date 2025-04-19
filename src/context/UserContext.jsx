@@ -5,7 +5,10 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const login = (name) => setUser({ name });
+  const login = (usuarioCompleto) => {
+    setUser(usuarioCompleto);
+  };
+
   const logout = () => setUser(null);
 
   return (

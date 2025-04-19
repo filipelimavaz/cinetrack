@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Login from './pages/Login';
+import Cadastro from './pages/Cadastro'; // ⬅️ Nova importação
 import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
@@ -30,10 +31,11 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   return (
     <Routes>
-      {/* Página de Login */}
+      {/* Páginas públicas */}
       <Route path="/login" element={<Login />} />
+      <Route path="/cadastro" element={<Cadastro />} /> {/* ⬅️ Nova rota */}
 
-      {/* Rotas protegidas agrupadas com layout comum */}
+      {/* Páginas protegidas */}
       <Route
         element={
           <ProtectedRoute>
@@ -50,7 +52,6 @@ function App() {
         <Route path="/busca" element={<ResultadosBusca />} />
       </Route>
 
-      {/* Página 404 */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

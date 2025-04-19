@@ -24,6 +24,10 @@ header {
   padding-top: 80px; /* Ajuste esse valor de acordo com a altura do seu header */
 }
 
+.home-content h2{
+  padding-left: 1rem;
+}
+
 .carousel-container {
   position: relative;
   width: 100%;
