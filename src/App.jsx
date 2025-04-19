@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -8,56 +8,49 @@ import Filmes from './pages/Filmes';
 import Series from './pages/Series';
 import Avaliacao from './pages/Avaliacao';
 import { useUser } from './context/UserContext';
+import Header from './components/Header';
+import ResultadosBusca from './pages/ResultadosBusca';
 
+// Componente de layout protegido com Header + Outlet
+const ProtectedLayout = () => (
+  <>
+    <Header />
+    <main className="p-4">
+      <Outlet />
+    </main>
+  </>
+);
+
+// Rota protegida
 const ProtectedRoute = ({ children }) => {
   const { user } = useUser();
-  return user ? children : <Navigate to="/" replace />;
+  return user ? children : <Navigate to="/login" replace />;
 };
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      {/* Página de Login */}
+      <Route path="/login" element={<Login />} />
+
+      {/* Rotas protegidas agrupadas com layout comum */}
       <Route
-        path="/home"
         element={
           <ProtectedRoute>
-            <Home />
+            <ProtectedLayout />
           </ProtectedRoute>
         }
-      />
-      <Route
-        path="/sobre"
-        element={
-          <ProtectedRoute>
-            <About />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/filmes"
-        element={
-          <ProtectedRoute>
-            <Filmes />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/series"
-        element={
-          <ProtectedRoute>
-            <Series />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/avaliar/:tipo/:id"
-        element={
-          <ProtectedRoute>
-            <Avaliacao />
-          </ProtectedRoute>
-        }
-      />
+      >
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/sobre" element={<About />} />
+        <Route path="/filmes" element={<Filmes />} />
+        <Route path="/series" element={<Series />} />
+        <Route path="/avaliar/:tipo/:id" element={<Avaliacao />} />
+        <Route path="/busca" element={<ResultadosBusca />} />
+      </Route>
+
+      {/* Página 404 */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

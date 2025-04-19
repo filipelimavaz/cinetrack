@@ -1,0 +1,80 @@
+.carousel-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+    gap: 16px;
+    scrollbar-width: none;
+  }
+  
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .carousel-item {
+    min-width: 200px;
+    flex: 0 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .carousel-item img {
+    display: block;
+    width: 100%;
+  }
+  
+  .avaliar-btn {
+    display: block;
+    text-align: center;
+    background-color: #3b82f6;
+    color: white;
+    padding: 6px 0;
+    width: 100%;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .avaliar-btn:hover {
+    background-color: #2563eb;
+  }
+  
+  .carousel-btn {
+    position: absolute;
+    top: 35%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 8px 12px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+  
+  .carousel-container:hover .carousel-btn {
+    opacity: 1;
+  }
+  
+  .carousel-btn-left {
+    left: 0;
+  }
+  
+  .carousel-btn-right {
+    right: 0;
+  }
+  

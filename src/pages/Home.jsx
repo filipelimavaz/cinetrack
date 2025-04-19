@@ -1,18 +1,61 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useUser } from '../context/UserContext';
+import '../styles/Home.css';
 
 const Home = () => {
-  const { user } = useUser();
+  const [filmes, setFilmes] = useState([]);
+  const [series, setSeries] = useState([]);
+
+  const filmesRef = useRef(null);
+  const seriesRef = useRef(null);
+
+  useEffect(() => {
+    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR`)
+      .then(res => res.json())
+      .then(data => setFilmes(data.results));
+
+    fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR`)
+      .then(res => res.json())
+      .then(data => setSeries(data.results));
+  }, []);
+
+  const handleScrollRight = (ref) => {
+    ref.current.scrollBy({ left: 1100, behavior: 'smooth' });
+  };
+
+  const handleScrollLeft = (ref) => {
+    ref.current.scrollBy({ left: -1100, behavior: 'smooth' });
+  };
 
   return (
-    <div className="p-4 max-w-xl mx-auto">
-      <h2 className="text-2xl mb-4">Olá, {user.name}!</h2>
-      <nav className="flex flex-col gap-2">
-        <Link to="/filmes" className="text-blue-500 hover:underline">Ver Filmes</Link>
-        <Link to="/series" className="text-blue-500 hover:underline">Ver Séries</Link>
-        <Link to="/sobre" className="text-blue-500 hover:underline">Sobre</Link>
-      </nav>
+    <div className="p-4">
+      <h2 className="text-2xl mb-2">Lançamentos</h2>
+      <div className="carousel-container">
+        <button className="carousel-btn carousel-btn-left" onClick={() => handleScrollLeft(filmesRef)}>&lt;</button>
+        <div className="carousel" ref={filmesRef}>
+          {filmes.map(filme => (
+            <div key={filme.id} className="carousel-item">
+              <img src={`https://image.tmdb.org/t/p/w200${filme.poster_path}`} alt={filme.title} />
+              <Link to={`/avaliar/filme/${filme.id}`} className="avaliar-btn">Avaliar</Link>
+            </div>
+          ))}
+        </div>
+        <button className="carousel-btn carousel-btn-right" onClick={() => handleScrollRight(filmesRef)}>&gt;</button>
+      </div>
+
+      <h2 className="text-2xl mt-8 mb-2">Séries Populares</h2>
+      <div className="carousel-container">
+        <button className="carousel-btn carousel-btn-left" onClick={() => handleScrollLeft(seriesRef)}>&lt;</button>
+        <div className="carousel" ref={seriesRef}>
+          {series.map(serie => (
+            <div key={serie.id} className="carousel-item">
+              <img src={`https://image.tmdb.org/t/p/w200${serie.poster_path}`} alt={serie.name} />
+              <Link to={`/avaliar/serie/${serie.id}`} className="avaliar-btn">Avaliar</Link>
+            </div>
+          ))}
+        </div>
+        <button className="carousel-btn carousel-btn-right" onClick={() => handleScrollRight(seriesRef)}>&gt;</button>
+      </div>
     </div>
   );
 };
