@@ -76,7 +76,6 @@ const Detalhes = () => {
         
 
         <div className="detalhes-info">
-          
         <h1 className="detalhes-titulo">{conteudo.title || conteudo.name}</h1>
           {tipoAPI === 'movie' ? (
             <p><strong>Diretor(es):</strong> {diretores}</p>
@@ -94,18 +93,20 @@ const Detalhes = () => {
         <h2>Avaliações</h2>
         {avaliacoes.length === 0 && <p>Nenhuma avaliação ainda.</p>}
         {avaliacoes.map((av, idx) => (
-          <div key={idx} className="avaliacao-card">
-            <div className="avaliacao-header">
-              <span className="avaliador"><strong>{av.usuario}</strong></span>
-              {av.nota != null && (
-                <span className="avaliacao-nota">Nota: {av.nota}</span>
-              )}
-            </div>
-            <p className="avaliacao-resenha">{av.resenha}</p>
+        <div key={idx} className="avaliacao-card">
+         <div className="avaliacao-header">
+            <span className="avaliador">
+              <strong>{av.usuario}</strong> {av.status && ` (${av.status})`}
+            </span>
+            {av.nota != null && (
+            <span className="avaliacao-nota">Nota: {av.nota}</span>
+            )}
+          </div>
+          <p className="avaliacao-resenha">{av.resenha}</p>
           </div>
         ))}
+        </div>
       </div>
-    </div>
   );
 };
 
