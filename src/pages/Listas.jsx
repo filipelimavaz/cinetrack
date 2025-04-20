@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useUser } from '../context/UserContext'; // Importa o contexto do usuário
 import '../styles/Listas.css';
 
 const Listas = () => {
@@ -9,17 +10,24 @@ const Listas = () => {
     deseja_assistir: [],
   });
 
+  const { user } = useUser(); // Acessa o usuário logado
+
   useEffect(() => {
-    // Recupera todas as avaliações do localStorage
+    if (!user) return;
+
     const allAvaliacoes = [];
     Object.keys(localStorage).forEach(key => {
       if (key.startsWith('avaliacao-')) {
         const avaliacao = JSON.parse(localStorage.getItem(key));
-        allAvaliacoes.push(avaliacao);
+
+        // Só adiciona se a avaliação for do usuário logado
+        if (key.endsWith(`-${user.id}`)) {
+          allAvaliacoes.push(avaliacao);
+        }
       }
     });
 
-    // Organiza as avaliações nas categorias
+    // Organiza as avaliações por status
     const categorias = {
       visto: [],
       dropado: [],
@@ -37,7 +45,7 @@ const Listas = () => {
     });
 
     setAvaliacoes(categorias);
-  }, []);
+  }, [user]);
 
   const renderList = (categoria, avaliacoes) => {
     if (avaliacoes.length === 0) {
@@ -49,10 +57,10 @@ const Listas = () => {
         {avaliacoes.map((avaliacao, index) => (
           <Link
             key={index}
-            to={`/detalhesAvaliacao/${avaliacao.tipo}/${avaliacao.id}`} // Redireciona para a página de detalhes
+            to={`/detalhesAvaliacao/${avaliacao.tipo}/${avaliacao.id}`}
             className="card"
             style={{
-              width: '140px',  // Tamanho fixo para os cards
+              width: '140px',
               textAlign: 'center',
             }}
           >
@@ -61,7 +69,6 @@ const Listas = () => {
               alt={avaliacao.titulo}
               className="poster"
             />
-            {/* Exibe a nota apenas */}
             {avaliacao.status !== 'deseja_assistir' && (
               <p className="nota">Nota: {avaliacao.nota}</p>
             )}
@@ -70,6 +77,10 @@ const Listas = () => {
       </div>
     );
   };
+
+  if (!user) {
+    return <p>Você precisa estar logado para ver suas listas.</p>;
+  }
 
   return (
     <div className="listas-container">
