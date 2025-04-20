@@ -1,23 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useUser } from '../context/UserContext'; // Importa contexto do usuário
 import '../styles/DetalhesAvaliacao.css';
 
 const DetalhesAvaliacao = () => {
   const { tipo, id } = useParams();
+  const { user } = useUser(); // Obtém o usuário logado
   const [avaliacao, setAvaliacao] = useState(null);
 
   useEffect(() => {
-    const chave = `avaliacao-${tipo}-${id}`;
+    if (!user) return; // Se não há usuário, não tenta buscar avaliação
+
+    const chave = `avaliacao-${tipo}-${id}-${user.id}`;
     const avaliacaoSalva = JSON.parse(localStorage.getItem(chave));
-    console.log('🔍 Avaliação carregada do localStorage:', avaliacaoSalva);
+    console.log('🔍 Avaliação do usuário carregada do localStorage:', avaliacaoSalva);
 
     if (avaliacaoSalva) {
       setAvaliacao(avaliacaoSalva);
     }
-  }, [tipo, id]);
+  }, [tipo, id, user]);
+
+  if (!user) {
+    return <p>Você precisa estar logado para ver sua avaliação.</p>;
+  }
 
   if (!avaliacao) {
-    return <p>Carregando...</p>;
+    return <p>Você ainda não avaliou este título.</p>;
   }
 
   const statusLabel = {
@@ -29,11 +37,13 @@ const DetalhesAvaliacao = () => {
   return (
     <div className="detalhes-container">
       <div className="detalhes-conteudo">
-        <img
-          src={`https://image.tmdb.org/t/p/w300${avaliacao.poster_path}`}
-          alt={avaliacao.titulo}
-          className="poster"
-        />
+        {avaliacao.poster_path && (
+          <img
+            src={`https://image.tmdb.org/t/p/w300${avaliacao.poster_path}`}
+            alt={avaliacao.titulo}
+            className="poster"
+          />
+        )}
 
         <div className="informacoes">
           <h2 className="titulo">{avaliacao.titulo}</h2>
