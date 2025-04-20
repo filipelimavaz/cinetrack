@@ -1,54 +1,42 @@
-body {
-  margin: 0;
-  padding: 0;
-}
+/* Home.css */
 
-/* Estilo para o header fixo */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 1000; /* Para garantir que o header fique acima do conteúdo */
-  background-color: #000;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* Espaçamento acima do conteúdo Home */
 .home-content {
-  padding-top: 80px; /* Ajuste esse valor de acordo com a altura do seu header */
+  padding-top: 80px; /* espaço para o header fixo */
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.home-content h2{
-  padding-left: 1rem;
+h2 {
+  margin: 20px 0 10px;
+  font-size: 22px;
+  color: #000;
 }
 
 .carousel-container {
   position: relative;
-  width: 100%;
-  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
 }
 
 .carousel {
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding-bottom: 10px;
-  gap: 16px;
-  scrollbar-width: none;
+  gap: 10px;
+  padding: 10px 0;
+
+  /* Ocultar barra de rolagem */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE e Edge */
 }
 
 .carousel::-webkit-scrollbar {
-  display: none;
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .carousel-item {
   min-width: 200px;
+  max-width: 200px;
   flex: 0 0 auto;
   border-radius: 8px;
   overflow: hidden;
@@ -58,11 +46,17 @@ header {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.carousel-item:hover {
+  transform: scale(1.05);
 }
 
 .carousel-item img {
-  display: block;
   width: 100%;
+  display: block;
 }
 
 .avaliar-btn {
@@ -78,41 +72,27 @@ header {
 }
 
 .avaliar-btn:hover {
-  background-color: #2563eb;
+  background-color: #0056b3;
 }
 
 .carousel-btn {
   position: absolute;
-  top: 35%;
+  top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.3);
-  border: none;
+  background-color: rgba(0, 0, 0, 0.6);
   color: white;
-  font-size: 2rem;
-  padding: 8px 12px;
+  border: none;
+  padding: 10px 15px;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  font-size: 18px;
   z-index: 1;
-}
-
-.carousel-container:hover .carousel-btn {
-  opacity: 1;
+  border-radius: 50%;
 }
 
 .carousel-btn-left {
-  left: 0;
+  left: -10px;
 }
 
 .carousel-btn-right {
-  right: 0;
-}
-
-.carousel-item {
-  transition: transform 0.3s ease;
-}
-
-.carousel-item:hover {
-  transform: scale(1.05);
-  z-index: 2; /* Faz o card sobrepor os vizinhos */
+  right: -10px;
 }

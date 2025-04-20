@@ -3,15 +3,18 @@ import { Link } from 'react-router-dom';
 import '../styles/Home.css';
 
 const Home = () => {
+  const [lancamentos, setLancamentos] = useState([]);
   const [generosFilmes, setGenerosFilmes] = useState([]);
   const [generosSeries, setGenerosSeries] = useState([]);
   const [filmesPorGenero, setFilmesPorGenero] = useState({});
   const [seriesPorGenero, setSeriesPorGenero] = useState({});
-
   const carrosselRefs = useRef({});
 
   useEffect(() => {
-    // Buscar gêneros de filmes e séries
+    fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR`)
+      .then(res => res.json())
+      .then(data => setLancamentos(data.results));
+
     fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR`)
       .then(res => res.json())
       .then(data => setGenerosFilmes(data.genres));
@@ -22,7 +25,6 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    // Buscar filmes por gênero
     generosFilmes.forEach(genero => {
       fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR&with_genres=${genero.id}`)
         .then(res => res.json())
@@ -36,7 +38,6 @@ const Home = () => {
   }, [generosFilmes]);
 
   useEffect(() => {
-    // Buscar séries por gênero
     generosSeries.forEach(genero => {
       fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR&with_genres=${genero.id}`)
         .then(res => res.json())
@@ -59,36 +60,62 @@ const Home = () => {
 
   return (
     <div className="home-content">
-      <h1>Filmes Populares por Gênero</h1>
-      {generosFilmes.map(genero => (
-        <div key={`filme-${genero.id}`}>
-          <h2>{genero.name}</h2>
+      <h1>Lançamentos</h1>
+      <div className="carousel-container">
+        <button className="carousel-btn carousel-btn-left" onClick={() => scrollLeft('lancamentos')}>&lt;</button>
+        <div className="carousel" ref={el => (carrosselRefs.current['lancamentos'] = el)}>
+          {lancamentos.map(item => (
+            <div key={item.id} className="carousel-item">
+              <Link to={`/detalhes/${item.media_type}/${item.id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                  alt={item.title || item.name}
+                  className="poster-clickable"
+                />
+              </Link>
+              <button className="avaliar-btn" onClick={() => console.log('Avaliar clicado')}>Avaliar</button>
+            </div>
+          ))}
+        </div>
+        <button className="carousel-btn carousel-btn-right" onClick={() => scrollRight('lancamentos')}>&gt;</button>
+      </div>
+
+      {generosFilmes.map((genero) => (
+        <div key={`filmes-${genero.id}`}>
+          <h2>{genero.name} - Filmes</h2>
           <div className="carousel-container">
             <button className="carousel-btn carousel-btn-left" onClick={() => scrollLeft(`filme-${genero.id}`)}>&lt;</button>
             <div className="carousel" ref={el => (carrosselRefs.current[`filme-${genero.id}`] = el)}>
               {(filmesPorGenero[genero.id] || []).map(filme => (
                 <div key={filme.id} className="carousel-item">
-                  <img src={`https://image.tmdb.org/t/p/w200${filme.poster_path}`} alt={filme.title} />
-                  <Link to={`/avaliar/filme/${filme.id}`} className="avaliar-btn">Avaliar</Link>
+                  <Link to={`/detalhes/filme/${filme.id}`}>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w200${filme.poster_path}`}
+                      alt={filme.title}
+                      className="poster-clickable"
+                    />
+                  </Link>
+                  <button className="avaliar-btn" onClick={() => console.log('Avaliar clicado')}>Avaliar</button>
                 </div>
               ))}
             </div>
             <button className="carousel-btn carousel-btn-right" onClick={() => scrollRight(`filme-${genero.id}`)}>&gt;</button>
           </div>
-        </div>
-      ))}
 
-      <h1>Séries Populares por Gênero</h1>
-      {generosSeries.map(genero => (
-        <div key={`serie-${genero.id}`}>
-          <h2>{genero.name}</h2>
+          <h2>{genero.name} - Séries</h2>
           <div className="carousel-container">
             <button className="carousel-btn carousel-btn-left" onClick={() => scrollLeft(`serie-${genero.id}`)}>&lt;</button>
             <div className="carousel" ref={el => (carrosselRefs.current[`serie-${genero.id}`] = el)}>
               {(seriesPorGenero[genero.id] || []).map(serie => (
                 <div key={serie.id} className="carousel-item">
-                  <img src={`https://image.tmdb.org/t/p/w200${serie.poster_path}`} alt={serie.name} />
-                  <Link to={`/avaliar/serie/${serie.id}`} className="avaliar-btn">Avaliar</Link>
+                  <Link to={`/detalhes/serie/${serie.id}`}>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w200${serie.poster_path}`}
+                      alt={serie.name}
+                      className="poster-clickable"
+                    />
+                  </Link>
+                  <button className="avaliar-btn" onClick={() => console.log('Avaliar clicado')}>Avaliar</button>
                 </div>
               ))}
             </div>
