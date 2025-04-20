@@ -5,6 +5,7 @@ import '../styles/Home.css';
 const Filmes = () => {
   const [generos, setGeneros] = useState([]);
   const [filmesPorGenero, setFilmesPorGenero] = useState({});
+  const carrosselRefs = useRef({});
 
   useEffect(() => {
     // Buscar todos os gêneros de filmes
@@ -29,8 +30,6 @@ const Filmes = () => {
     });
   }, [generos]);
 
-  const carrosselRefs = useRef({});
-
   const scrollLeft = (id) => {
     carrosselRefs.current[id]?.scrollBy({ left: -1100, behavior: 'smooth' });
   };
@@ -52,7 +51,13 @@ const Filmes = () => {
             >
               {(filmesPorGenero[genero.id] || []).map(filme => (
                 <div key={filme.id} className="carousel-item">
-                  <img src={`https://image.tmdb.org/t/p/w200${filme.poster_path}`} alt={filme.title} />
+                  <Link to={`/detalhes/movie/${filme.id}`}>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w200${filme.poster_path}`}
+                      alt={filme.title}
+                      className="poster-clickable"
+                    />
+                  </Link>
                   <Link to={`/avaliar/filme/${filme.id}`} className="avaliar-btn">Avaliar</Link>
                 </div>
               ))}

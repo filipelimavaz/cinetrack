@@ -49,7 +49,13 @@ const Series = () => {
             >
               {(seriesPorGenero[genero.id] || []).map(serie => (
                 <div key={serie.id} className="carousel-item">
-                  <img src={`https://image.tmdb.org/t/p/w200${serie.poster_path}`} alt={serie.name} />
+                  <Link to={`/detalhes/serie/${serie.id}`}>
+                    <img 
+                    src={`https://image.tmdb.org/t/p/w200${serie.poster_path}`} 
+                    alt={serie.name} 
+                    className='poster-clickable'
+                    />
+                  </Link>
                   <Link to={`/avaliar/serie/${serie.id}`} className="avaliar-btn">Avaliar</Link>
                 </div>
               ))}
