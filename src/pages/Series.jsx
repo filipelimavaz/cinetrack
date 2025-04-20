@@ -1,27 +1,63 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/Home.css';
 
 const Series = () => {
-  const [series, setSeries] = useState([]);
+  const [generos, setGeneros] = useState([]);
+  const [seriesPorGenero, setSeriesPorGenero] = useState({});
+  const carrosselRefs = useRef({});
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR`)
+    // Buscar lista de gêneros de séries
+    fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR`)
       .then(res => res.json())
-      .then(data => setSeries(data.results));
+      .then(data => setGeneros(data.genres));
   }, []);
 
+  useEffect(() => {
+    // Buscar séries para cada gênero
+    generos.forEach(genero => {
+      fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR&with_genres=${genero.id}`)
+        .then(res => res.json())
+        .then(data => {
+          setSeriesPorGenero(prev => ({
+            ...prev,
+            [genero.id]: data.results
+          }));
+        });
+    });
+  }, [generos]);
+
+  const scrollLeft = (id) => {
+    carrosselRefs.current[id]?.scrollBy({ left: -1100, behavior: 'smooth' });
+  };
+
+  const scrollRight = (id) => {
+    carrosselRefs.current[id]?.scrollBy({ left: 1100, behavior: 'smooth' });
+  };
+
   return (
-    <div className="p-4">
-      <h2 className="text-2xl mb-4">Séries Populares</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {series.map(serie => (
-          <div key={serie.id} className="border p-2 rounded shadow">
-            <img src={`https://image.tmdb.org/t/p/w200${serie.poster_path}`} alt={serie.name} />
-            <h3 className="mt-2 font-semibold text-center">{serie.name}</h3>
-            <Link to={`/avaliar/serie/${serie.id}`} className="block text-blue-500 text-center mt-2">Avaliar</Link>
+    <div className="home-content">
+      {generos.map(genero => (
+        <div key={genero.id}>
+          <h2>{genero.name}</h2>
+          <div className="carousel-container">
+            <button className="carousel-btn carousel-btn-left" onClick={() => scrollLeft(genero.id)}>&lt;</button>
+            <div
+              className="carousel"
+              ref={el => (carrosselRefs.current[genero.id] = el)}
+            >
+              {(seriesPorGenero[genero.id] || []).map(serie => (
+                <div key={serie.id} className="carousel-item">
+                  <img src={`https://image.tmdb.org/t/p/w200${serie.poster_path}`} alt={serie.name} />
+                  <Link to={`/avaliar/serie/${serie.id}`} className="avaliar-btn">Avaliar</Link>
+                </div>
+              ))}
+            </div>
+            <button className="carousel-btn carousel-btn-right" onClick={() => scrollRight(genero.id)}>&gt;</button>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };

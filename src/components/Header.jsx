@@ -56,7 +56,7 @@ function Header() {
             />
           </form>
 
-          <Link className="hover:underline">Home</Link>
+          <Link to="/home" className="hover:underline">Home</Link>
           <Link to="/filmes" className="hover:underline">Filmes</Link>
           <Link to="/series" className="hover:underline">Séries</Link>
           <Link to="/sobre" className="hover:underline">Sobre</Link>
