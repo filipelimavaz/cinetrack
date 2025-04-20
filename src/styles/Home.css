@@ -1,7 +1,5 @@
-/* Home.css */
-
 .home-content {
-  padding-top: 80px; /* espaço para o header fixo */
+  padding-top: 80px;
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -24,14 +22,12 @@ h2 {
   scroll-behavior: smooth;
   gap: 10px;
   padding: 10px 0;
-
-  /* Ocultar barra de rolagem */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE e Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .carousel::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
 }
 
 .carousel-item {
@@ -44,35 +40,41 @@ h2 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
+  justify-content: flex-end;
+  position: relative;
+  height: 300px;
   transition: transform 0.3s ease;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
 }
 
 .carousel-item:hover {
   transform: scale(1.05);
 }
 
-.carousel-item img {
-  width: 100%;
-  display: block;
-}
-
 .avaliar-btn {
-  display: block;
-  text-align: center;
-  background-color: #3b82f6;
-  color: white;
-  padding: 6px 0;
+  position: absolute;
+  bottom: 0;
   width: 100%;
+  background-color: #000 !important;
+  color: white !important;
+  padding: 10px 0;
   font-weight: 500;
+  text-align: center;
   text-decoration: none;
   transition: background-color 0.3s ease;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
 }
 
 .avaliar-btn:hover {
-  background-color: #0056b3;
+  background-color: #333 !important;
 }
 
 .carousel-btn {
@@ -86,13 +88,21 @@ h2 {
   cursor: pointer;
   font-size: 18px;
   z-index: 1;
-  border-radius: 50%;
+  border-radius: 10%;
+  opacity: 0;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  
+}
+
+.carousel-btn:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.8); /* opcional: escurece um pouco mais no hover */
 }
 
 .carousel-btn-left {
-  left: -10px;
+  left: 2px;
 }
 
 .carousel-btn-right {
-  right: -10px;
+  right: 2px;
 }

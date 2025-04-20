@@ -80,49 +80,64 @@ const Home = () => {
         <button className="carousel-btn carousel-btn-right" onClick={() => scrollRight('lancamentos')}>&gt;</button>
       </div>
 
-      {generosFilmes.map((genero) => (
-        <div key={`filmes-${genero.id}`}>
-          <h2>{genero.name} - Filmes</h2>
-          <div className="carousel-container">
-            <button className="carousel-btn carousel-btn-left" onClick={() => scrollLeft(`filme-${genero.id}`)}>&lt;</button>
-            <div className="carousel" ref={el => (carrosselRefs.current[`filme-${genero.id}`] = el)}>
-              {(filmesPorGenero[genero.id] || []).map(filme => (
-                <div key={filme.id} className="carousel-item">
-                  <Link to={`/detalhes/filme/${filme.id}`}>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w200${filme.poster_path}`}
-                      alt={filme.title}
-                      className="poster-clickable"
-                    />
-                  </Link>
-                  <button className="avaliar-btn" onClick={() => console.log('Avaliar clicado')}>Avaliar</button>
-                </div>
-              ))}
-            </div>
-            <button className="carousel-btn carousel-btn-right" onClick={() => scrollRight(`filme-${genero.id}`)}>&gt;</button>
-          </div>
+      {generosFilmes.map((genero) => {
+        const filmes = filmesPorGenero[genero.id] || [];
+        const series = seriesPorGenero[genero.id] || [];
 
-          <h2>{genero.name} - Séries</h2>
-          <div className="carousel-container">
-            <button className="carousel-btn carousel-btn-left" onClick={() => scrollLeft(`serie-${genero.id}`)}>&lt;</button>
-            <div className="carousel" ref={el => (carrosselRefs.current[`serie-${genero.id}`] = el)}>
-              {(seriesPorGenero[genero.id] || []).map(serie => (
-                <div key={serie.id} className="carousel-item">
-                  <Link to={`/detalhes/serie/${serie.id}`}>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w200${serie.poster_path}`}
-                      alt={serie.name}
-                      className="poster-clickable"
-                    />
-                  </Link>
-                  <button className="avaliar-btn" onClick={() => console.log('Avaliar clicado')}>Avaliar</button>
+        if (filmes.length === 0 && series.length === 0) return null;
+
+        return (
+          <div key={`bloco-${genero.id}`}>
+            {filmes.length > 0 && (
+              <>
+                <h2>{genero.name} (Filmes)</h2>
+                <div className="carousel-container">
+                  <button className="carousel-btn carousel-btn-left" onClick={() => scrollLeft(`filme-${genero.id}`)}>&lt;</button>
+                  <div className="carousel" ref={el => (carrosselRefs.current[`filme-${genero.id}`] = el)}>
+                    {filmes.map(filme => (
+                      <div key={filme.id} className="carousel-item">
+                        <Link to={`/detalhes/movie/${filme.id}`}>
+                          <img
+                            src={`https://image.tmdb.org/t/p/w200${filme.poster_path}`}
+                            alt={filme.title}
+                            className="poster-clickable"
+                          />
+                        </Link>
+                        <button className="avaliar-btn" onClick={() => console.log('Avaliar clicado')}>Avaliar</button>
+                      </div>
+                    ))}
+                  </div>
+                  <button className="carousel-btn carousel-btn-right" onClick={() => scrollRight(`filme-${genero.id}`)}>&gt;</button>
                 </div>
-              ))}
-            </div>
-            <button className="carousel-btn carousel-btn-right" onClick={() => scrollRight(`serie-${genero.id}`)}>&gt;</button>
+              </>
+            )}
+
+            {series.length > 0 && (
+              <>
+                <h2>{genero.name} (Séries)</h2>
+                <div className="carousel-container">
+                  <button className="carousel-btn carousel-btn-left" onClick={() => scrollLeft(`serie-${genero.id}`)}>&lt;</button>
+                  <div className="carousel" ref={el => (carrosselRefs.current[`serie-${genero.id}`] = el)}>
+                    {series.map(serie => (
+                      <div key={serie.id} className="carousel-item">
+                        <Link to={`/detalhes/tv/${serie.id}`}>
+                          <img
+                            src={`https://image.tmdb.org/t/p/w200${serie.poster_path}`}
+                            alt={serie.name}
+                            className="poster-clickable"
+                          />
+                        </Link>
+                        <button className="avaliar-btn" onClick={() => console.log('Avaliar clicado')}>Avaliar</button>
+                      </div>
+                    ))}
+                  </div>
+                  <button className="carousel-btn carousel-btn-right" onClick={() => scrollRight(`serie-${genero.id}`)}>&gt;</button>
+                </div>
+              </>
+            )}
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
