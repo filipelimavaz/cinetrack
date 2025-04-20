@@ -6,6 +6,7 @@ import '../styles/Perfil.css';
 function Perfil() {
   const { user } = useUser();
   const [avaliacoesRecentes, setAvaliacoesRecentes] = useState([]);
+  const [desejos, setDesejos] = useState([]);
 
   const calcularIdade = (dataNascimento) => {
     const hoje = new Date();
@@ -21,25 +22,27 @@ function Perfil() {
   const idade = user?.nascimento ? calcularIdade(user.nascimento) : null;
 
   useEffect(() => {
-    // Pega todas as avaliações do localStorage
+    if (!user) return;
+
     const allAvaliacoes = [];
     Object.keys(localStorage).forEach(key => {
-      if (key.startsWith('avaliacao-')) {
+      if (key.startsWith('avaliacao-') && key.endsWith(`-${user.id}`)) {
         const avaliacao = JSON.parse(localStorage.getItem(key));
         allAvaliacoes.push(avaliacao);
       }
     });
 
-    // Filtra por avaliações com status "visto" ou "dropado"
+    // Avaliações feitas (visto ou dropado)
     const feitas = allAvaliacoes.filter(a =>
       a.status === 'visto' || a.status === 'dropado'
     );
-
-    // Ordena pela data (se existir) ou apenas pega as mais recentes
-    const recentes = feitas.slice(-10).reverse(); // Últimas 10
-
+    const recentes = feitas.slice(-10).reverse();
     setAvaliacoesRecentes(recentes);
-  }, []);
+
+    // Desejo assistir
+    const desejosAssistir = allAvaliacoes.filter(a => a.status === 'deseja_assistir');
+    setDesejos(desejosAssistir);
+  }, [user]);
 
   return (
     <div className="perfil-page">
@@ -69,6 +72,31 @@ function Perfil() {
                     className="poster"
                   />
                   <p className="nota">Nota: {avaliacao.nota}</p>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="desejos-assistir">
+          <h3>Pretendo Assistir</h3>
+          {desejos.length === 0 ? (
+            <p>Você ainda não adicionou nenhum título como "desejo assistir".</p>
+          ) : (
+            <div className="carrossel">
+              {desejos.map((desejo, index) => (
+                <Link
+                  key={index}
+                  to={`/detalhesAvaliacao/${desejo.tipo}/${desejo.id}`}
+                  className="card"
+                  style={{ width: '140px', textAlign: 'center' }}
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w200${desejo.poster_path}`}
+                    alt={desejo.titulo}
+                    className="poster"
+                  />
+                  <p className="titulo">{desejo.titulo}</p>
                 </Link>
               ))}
             </div>
