@@ -65,16 +65,19 @@ const Detalhes = () => {
 
   return (
     <div className="detalhes-container">
-      <h1 className="detalhes-titulo">{conteudo.title || conteudo.name}</h1>
-
       <div className="detalhes-main">
+
         <img
           className="detalhes-poster"
           src={`https://image.tmdb.org/t/p/w300${conteudo.poster_path}`}
           alt={conteudo.title || conteudo.name}
         />
 
+        
+
         <div className="detalhes-info">
+          
+        <h1 className="detalhes-titulo">{conteudo.title || conteudo.name}</h1>
           {tipoAPI === 'movie' ? (
             <p><strong>Diretor(es):</strong> {diretores}</p>
           ) : (
