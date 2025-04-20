@@ -3,7 +3,7 @@ import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import Home from './pages/Home';
-import About from './pages/About';
+import Perfil from './pages/Perfil';
 import NotFound from './pages/NotFound';
 import Filmes from './pages/Filmes';
 import Series from './pages/Series';
@@ -47,7 +47,7 @@ function App() {
       >
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/sobre" element={<About />} />
+        <Route path="/perfil" element={<Perfil />} />
         <Route path="/filmes" element={<Filmes />} />
         <Route path="/series" element={<Series />} />
         <Route path="/avaliar/:tipo/:id" element={<Avaliacao />} />

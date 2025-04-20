@@ -32,6 +32,7 @@ body {
     flex-wrap: wrap; /* Adiciona quebra de linha se necessário */
     justify-content: flex-end; /* Garante que os links fiquem alinhados à direita */
     width: 100%; /* Garante que os links usem toda a largura disponível */
+    padding-right: 10%;
   }
   
   .nav-links a {
@@ -63,5 +64,64 @@ body {
   
   .nav-links button:hover {
     color: #dc2626;
+  }
+  
+  .perfil-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 1rem;
+  }
+  
+  .perfil-icon {
+    cursor: pointer;
+    padding: 0.5rem;
+    display: inline-block;
+    font-size: 1.2rem;
+    background-color: #333;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    line-height: 2rem;
+    color: white;
+    margin-bottom: 10px;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    color: white;
+    width: 160px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    display: flex;
+    border-radius: 0 0 0.5rem 0.5rem;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+  
+  .dropdown-content a,
+  .dropdown-content button {
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .dropdown-content a:hover,
+  .dropdown-content button:hover {
+    background-color: #333;
+  }
+  
+  .perfil-dropdown:hover .dropdown-content {
+    display: flex;
   }
   

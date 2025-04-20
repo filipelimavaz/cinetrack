@@ -7,7 +7,9 @@ function Header() {
   const { user, logout } = useUser();
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
-  const [showHeader, setShowHeader] = useState(true); // Estado para mostrar ou esconder o header
+  const [showHeader, setShowHeader] = useState(true);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   let lastScrollY = 0;
 
   const handleLogout = () => {
@@ -23,13 +25,15 @@ function Header() {
     }
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > lastScrollY) {
-        // Rolando para baixo, esconde o header
         setShowHeader(false);
       } else if (window.scrollY < lastScrollY) {
-        // Rolando para cima, mostra o header
         setShowHeader(true);
       }
       lastScrollY = window.scrollY;
@@ -56,12 +60,22 @@ function Header() {
             />
           </form>
 
-          <Link to="/home" className="hover:underline">Home</Link>
-          <Link to="/filmes" className="hover:underline">Filmes</Link>
-          <Link to="/series" className="hover:underline">Séries</Link>
-          <Link to="/listas" className="hover:underline">Minha Lista</Link>
-          <Link to="/sobre" className="hover:underline">Sobre</Link>
-          <button onClick={handleLogout} className="text-red-400 hover:text-red-600">Logout</button>
+          <Link to="/home">Home</Link>
+          <Link to="/filmes">Filmes</Link>
+          <Link to="/series">Séries</Link>
+          <Link to="/listas">Minha Lista</Link>
+
+          <div className="perfil-dropdown">
+            <div className="perfil-icon" onClick={toggleDropdown}>
+              <span>P</span>
+            </div>
+            {isDropdownOpen && (
+              <div className="dropdown-content">
+                <Link to="/perfil">Perfil</Link>
+                <button onClick={handleLogout}>Logout</button>
+              </div>
+            )}
+          </div>
         </nav>
       )}
     </header>

@@ -1,0 +1,49 @@
+.perfil-page {
+  padding: 80px 2rem 2rem; /* Top padding para respeitar o header */
+  box-sizing: border-box;
+}
+
+.perfil-container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.perfil-info p span {
+  font-weight: bold;
+}
+
+.avaliacoes-recentes {
+  margin-top: 2rem;
+}
+
+.carrossel {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 1rem;
+}
+
+.card {
+  flex: 0 0 auto;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  padding: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  width: 140px;
+  scroll-snap-align: start;
+}
+
+.poster {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.nota {
+  font-weight: bold;
+  margin-top: 0.5rem;
+  font-size: 14px;
+  color: #333;
+}
