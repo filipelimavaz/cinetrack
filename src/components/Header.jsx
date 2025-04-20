@@ -59,6 +59,7 @@ function Header() {
           <Link to="/home" className="hover:underline">Home</Link>
           <Link to="/filmes" className="hover:underline">Filmes</Link>
           <Link to="/series" className="hover:underline">Séries</Link>
+          <Link to="/listas" className="hover:underline">Minha Lista</Link>
           <Link to="/sobre" className="hover:underline">Sobre</Link>
           <button onClick={handleLogout} className="text-red-400 hover:text-red-600">Logout</button>
         </nav>

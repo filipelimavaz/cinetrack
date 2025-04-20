@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Login from './pages/Login';
-import Cadastro from './pages/Cadastro'; // ⬅️ Nova importação
+import Cadastro from './pages/Cadastro';
 import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
@@ -11,8 +11,9 @@ import Avaliacao from './pages/Avaliacao';
 import { useUser } from './context/UserContext';
 import Header from './components/Header';
 import ResultadosBusca from './pages/ResultadosBusca';
+import Listas from './pages/Listas';  // Corrija o caminho de importação
+import DetalhesAvaliacao from './pages/DetalhesAvaliacao';
 
-// Componente de layout protegido com Header + Outlet
 const ProtectedLayout = () => (
   <>
     <Header />
@@ -50,6 +51,8 @@ function App() {
         <Route path="/series" element={<Series />} />
         <Route path="/avaliar/:tipo/:id" element={<Avaliacao />} />
         <Route path="/busca" element={<ResultadosBusca />} />
+        <Route path="/listas" element={<Listas />} />
+        <Route path="/detalhes/:tipo/:id" element={<DetalhesAvaliacao />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

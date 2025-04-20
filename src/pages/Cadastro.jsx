@@ -6,10 +6,11 @@ function Cadastro() {
     nome: '',
     sobrenome: '',
     email: '',
-    nascimento: '',
+    dataNascimento: '', // <- Aqui!
     usuario: '',
     senha: ''
   });
+  
 
   const navigate = useNavigate();
 
@@ -75,9 +76,9 @@ function Cadastro() {
         />
         <input
           type="date"
-          name="nascimento"
+          name="dataNascimento"
           placeholder="Data de nascimento"
-          value={formData.nascimento}
+          value={formData.dataNascimento}
           onChange={handleChange}
           className="w-full border p-2"
         />

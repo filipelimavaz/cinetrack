@@ -107,3 +107,12 @@ header {
 .carousel-btn-right {
   right: 0;
 }
+
+.carousel-item {
+  transition: transform 0.3s ease;
+}
+
+.carousel-item:hover {
+  transform: scale(1.05);
+  z-index: 2; /* Faz o card sobrepor os vizinhos */
+}
