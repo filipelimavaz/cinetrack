@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import '../styles/Avaliacao.css';
@@ -11,18 +11,23 @@ const Avaliacao = () => {
   const [nota, setNota] = useState(0);
   const [resenha, setResenha] = useState('');
   const [status, setStatus] = useState('deseja_assistir');
+  const [carregando, setCarregando] = useState(true);
 
-  const tipoAPI = tipo === 'filme' ? 'movie' : 'tv';
+  const tipoAPI = tipo === 'filme' ? 'movie' : tipo === 'serie' ? 'tv' : tipo;
 
   useEffect(() => {
-    const url = `https://api.themoviedb.org/3/${tipoAPI}/${id}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR`;
+    setCarregando(true);
 
-    fetch(url)
+    fetch(
+      `https://api.themoviedb.org/3/${tipoAPI}/${id}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR`
+    )
       .then((res) => res.json())
       .then((data) => {
-        setTitulo(data.title || data.name);
+        setTitulo(data.title || data.name); // Obtendo título do filme ou série
         setPosterPath(data.poster_path || '');
-      });
+      })
+      .catch((err) => console.error('Erro ao carregar dados:', err))
+      .finally(() => setCarregando(false));
   }, [tipoAPI, id]);
 
   const handleSubmit = (e) => {
@@ -50,24 +55,44 @@ const Avaliacao = () => {
     alert('Avaliação salva com sucesso!');
   };
 
+  if (carregando) return <p>Carregando...</p>;
+
   return (
     <div className="container">
-      <h2 className="titulo-pagina">Avaliar: {titulo}</h2>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        {status !== 'deseja_assistir' && (
-          <label>
-            Nota (1 a 10):
-            <input
-              type="number"
-              min="1"
-              max="10"
-              value={nota}
-              onChange={(e) => setNota(Number(e.target.value))}
-              className="border p-2 w-full"
-            />
-          </label>
+      
+
+      <div className="titulo-poster-container">
+        {/* Exibindo o pôster e a nota ao lado */}
+        {posterPath && (
+          <img
+            src={`https://image.tmdb.org/t/p/w200${posterPath}`}
+            alt={titulo}
+            className="poster"
+          />
         )}
 
+<div className="info-container">
+  <h2 className="titulo-pagina">Avaliar: {titulo}</h2>
+
+  {status !== 'deseja_assistir' && (
+    <div className="nota-container">
+      <label>
+        Nota (1 a 10):
+        <input
+          type="number"
+          min="1"
+          max="10"
+          value={nota}
+          onChange={(e) => setNota(Number(e.target.value))}
+          className="border p-2 w-full"
+        />
+      </label>
+    </div>
+          )}
+        </div>
+      </div>
+
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <label>
           Resenha:
           <textarea

@@ -1,82 +1,132 @@
-/* Avaliacao.css */
 
-/* Container da página de avaliação */
+/* Estilo para o texto de carregamento */
+p {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Estilos para resenha */
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Estilo para status */
+select {
+  font-size: 16px;
+}
+
+/* Estilos gerais */
+body {
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
 .container {
-  padding: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  margin-top: 80px; /* Ajuste o valor conforme a altura do seu header */
+  width: 80%; /* Ajuste a largura do container (80% da largura da tela) */
+  max-width: 1200px; /* Limite máximo para a largura do container */
+  margin-left: auto; /* Centraliza o container horizontalmente */
+  margin-right: auto; /* Centraliza o container horizontalmente */
+}
+
+/* Contêiner que envolve o título, pôster e nota */
+.titulo-poster-container {
+  display: flex;
+  margin-left: 0%;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-bottom: 20px;
 }
 
 /* Título da página */
 .titulo-pagina {
-  font-size: 1.5rem;
-  font-weight: 700;
+  display: flex;
+  font-size: 2rem;
+  font-weight: bold;
   margin-bottom: 1rem;
+  color: #333;
 }
 
-/* Estilizando o formulário */
+/* Estilo para o pôster do filme */
+.poster {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Contêiner da nota ao lado do pôster */
+.nota-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+/* Estilo do campo de nota */
+.nota-container label {
+  font-size: 16px;
+}
+
+input[type="number"] {
+  width: 80px;
+  text-align: center;
+  padding: 8px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Estilo para o formulário */
 form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 16px;
 }
 
-/* Estilo dos campos de input */
-input, select, textarea {
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-/* Campo de texto maior para resenha */
-textarea {
-  min-height: 200px;
-  max-height: 300px;
-  resize: vertical;
-  width: 100%;
-}
-
-/* Estilo do botão de salvar */
-.botao-salvar {
-  background-color: #4CAF50;
-  color: white;
-  padding: 1rem;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-/* Efeito hover para o botão */
-.botao-salvar:hover {
-  background-color: #45a049;
-}
-
-/* Estilo para os labels */
+/* Estilo para os campos do formulário */
 label {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 16px;
 }
 
-/* Campo de status de visualização */
-select {
+textarea, select, input[type="number"] {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
   width: 100%;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
+/* Estilo do botão */
+.botao-salvar {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
-  textarea {
-    min-height: 150px;
-  }
-
-  .botao-salvar {
-    font-size: 1rem;
-    padding: 0.8rem;
-  }
+/* Alteração de cor do botão quando o mouse passa sobre ele */
+.botao-salvar:hover {
+  background-color: #0056b3;
 }
