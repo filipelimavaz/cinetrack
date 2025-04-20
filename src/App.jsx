@@ -13,6 +13,7 @@ import Header from './components/Header';
 import ResultadosBusca from './pages/ResultadosBusca';
 import Listas from './pages/Listas';  // Corrija o caminho de importação
 import DetalhesAvaliacao from './pages/DetalhesAvaliacao';
+import Detalhes from './pages/Detalhes';
 
 const ProtectedLayout = () => (
   <>
@@ -52,7 +53,8 @@ function App() {
         <Route path="/avaliar/:tipo/:id" element={<Avaliacao />} />
         <Route path="/busca" element={<ResultadosBusca />} />
         <Route path="/listas" element={<Listas />} />
-        <Route path="/detalhes/:tipo/:id" element={<DetalhesAvaliacao />} />
+        <Route path="/detalhesAvaliacao/:tipo/:id" element={<DetalhesAvaliacao />} />
+        <Route path="/detalhes/:tipo/:id" element={<Detalhes />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

@@ -1,27 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
 import '../styles/Avaliacao.css';
 
 const Avaliacao = () => {
   const { tipo, id } = useParams();
+  const { user } = useUser();
   const [titulo, setTitulo] = useState('');
   const [posterPath, setPosterPath] = useState('');
   const [nota, setNota] = useState(0);
   const [resenha, setResenha] = useState('');
-  const [status, setStatus] = useState('deseja_assistir'); // "visto", "dropado", "deseja_assistir"
+  const [status, setStatus] = useState('deseja_assistir');
+
+  const tipoAPI = tipo === 'filme' ? 'movie' : 'tv';
 
   useEffect(() => {
-    const url = tipo === 'filme'
-      ? `https://api.themoviedb.org/3/movie/${id}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR`
-      : `https://api.themoviedb.org/3/tv/${id}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR`;
+    const url = `https://api.themoviedb.org/3/${tipoAPI}/${id}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR`;
 
     fetch(url)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setTitulo(data.title || data.name);
         setPosterPath(data.poster_path || '');
       });
-  }, [tipo, id]);
+  }, [tipoAPI, id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,16 +34,19 @@ const Avaliacao = () => {
     }
 
     const avaliacao = {
-      tipo,
+      tipo: tipoAPI,
       id,
       titulo,
       poster_path: posterPath,
       nota,
       resenha,
-      status
+      status,
+      usuario: user?.usuario || 'Anônimo',
+      usuarioId: user?.id || null
     };
 
-    localStorage.setItem(`avaliacao-${tipo}-${id}`, JSON.stringify(avaliacao));
+    const chave = `avaliacao-${tipoAPI}-${id}-${user?.id || 'anonimo'}`;
+    localStorage.setItem(chave, JSON.stringify(avaliacao));
     alert('Avaliação salva com sucesso!');
   };
 
@@ -49,7 +54,6 @@ const Avaliacao = () => {
     <div className="container">
       <h2 className="titulo-pagina">Avaliar: {titulo}</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        
         {status !== 'deseja_assistir' && (
           <label>
             Nota (1 a 10):
@@ -58,7 +62,7 @@ const Avaliacao = () => {
               min="1"
               max="10"
               value={nota}
-              onChange={(e) => setNota(e.target.value)}
+              onChange={(e) => setNota(Number(e.target.value))}
               className="border p-2 w-full"
             />
           </label>
@@ -69,10 +73,12 @@ const Avaliacao = () => {
           <textarea
             value={resenha}
             onChange={(e) => setResenha(e.target.value)}
-            className="border p-2 w-full"
-            placeholder={status === 'deseja_assistir'
-              ? 'Escreva sua expectativa sobre o filme...'
-              : 'Compartilhe sua opinião sobre o filme'}
+            className="border p-2 w-full text-left"
+            placeholder={
+              status === 'deseja_assistir'
+                ? 'Escreva sua expectativa sobre o filme...'
+                : 'Compartilhe sua opinião sobre o filme'
+            }
           />
         </label>
 

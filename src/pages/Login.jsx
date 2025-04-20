@@ -18,7 +18,9 @@ function Login() {
     );
 
     if (usuarioEncontrado) {
+      // Armazena os dados completos, inclusive ID
       login(usuarioEncontrado);
+      localStorage.setItem('usuarioLogado', JSON.stringify(usuarioEncontrado)); // opcional, se quiser manter login
       navigate('/home');
     } else {
       alert('Usuário ou senha inválidos!');
@@ -55,7 +57,6 @@ function Login() {
           Entrar
         </button>
 
-        {/* Botão para cadastro */}
         <div className="mt-4 text-center">
           <p className="text-sm mb-2">Não tem uma conta?</p>
           <button

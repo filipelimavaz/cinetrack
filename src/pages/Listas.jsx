@@ -49,7 +49,7 @@ const Listas = () => {
         {avaliacoes.map((avaliacao, index) => (
           <Link
             key={index}
-            to={`/detalhes/${avaliacao.tipo}/${avaliacao.id}`} // Redireciona para a página de detalhes
+            to={`/detalhesAvaliacao/${avaliacao.tipo}/${avaliacao.id}`} // Redireciona para a página de detalhes
             className="card"
             style={{
               width: '140px',  // Tamanho fixo para os cards

@@ -1,116 +1,115 @@
-/* Reset básico para garantir que tudo fique consistente */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Container específico para a página de detalhes de avaliação */
-.detalhes-avaliacao-container {
-  padding: 5rem 2rem 2rem; /* Espaço extra no topo devido ao header fixo */
+/* Container principal */
+.detalhes-container {
+  padding: 5rem 2rem 2rem;  /* Espaço para header fixo */
   max-width: 900px;
   margin: 0 auto;
-  background: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Layout de conteúdo da página de detalhes */
-.detalhes-avaliacao-conteudo {
+/* Título */
+.detalhes-titulo {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Bloco principal com pôster + informações */
+.detalhes-main {
   display: flex;
-  flex-direction: row;
   gap: 2rem;
-  align-items: center;
-  text-align: left;
+  align-items: flex-start;
 }
 
-/* Estilo para o título e informações do filme */
-.detalhes-avaliacao-informacoes {
+/* Poster */
+.detalhes-poster {
+  width: 300px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Informações ao lado */
+.detalhes-info {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  width: 100%;
+  gap: 0.75rem;
 }
 
-/* Estilo do título */
-.detalhes-avaliacao-titulo {
-  font-size: 2rem;
+.detalhes-info p {
+  line-height: 1.4;
+  color: #444;
+}
+
+.detalhes-overview {
+  margin-top: 1rem;
+  text-align: justify;
+}
+
+/* Seção de avaliações */
+.detalhes-avaliacoes {
+  margin-top: 2rem;
+}
+
+.detalhes-avaliacoes h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Card de cada avaliação */
+.avaliacao-card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+/* Cabeçalho com nome e nota */
+.avaliacao-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.avaliador {
   font-weight: bold;
   color: #333;
 }
 
-/* Estilo do status e da nota */
-.detalhes-avaliacao-status,
-.detalhes-avaliacao-nota {
-  font-size: 1rem;
-  color: #888;
-}
-
-.detalhes-avaliacao-status {
+.avaliacao-nota {
   font-weight: bold;
+  color: #4caf50;
 }
 
-/* Imagem do poster com borda arredondada */
-.detalhes-avaliacao-poster {
-  border-radius: 8px;
-  width: 200px; /* Tamanho fixo para o poster */
-  height: auto;
-  object-fit: cover;
-  margin-right: 1rem;
-}
-
-/* Estilo da resenha centralizada abaixo das informações */
-.detalhes-avaliacao-resenha {
-  font-size: 1rem;
-  color: #444;
+/* Resenha alinhada à esquerda */
+.avaliacao-resenha {
+  text-align: left;
   line-height: 1.5;
-  max-width: 700px;
-  margin: 1.5rem auto;
-  text-align: center;
+  color: #444;
 }
 
-.detalhes-avaliacao-resenha h3 {
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-/* Ajustes responsivos para a página de detalhes */
+/* Responsivo */
 @media (max-width: 768px) {
-  .detalhes-avaliacao-conteudo {
+  .detalhes-main {
     flex-direction: column;
     align-items: center;
   }
-
-  .detalhes-avaliacao-poster {
-    width: 150px;
-  }
-
-  .detalhes-avaliacao-titulo {
-    font-size: 1.6rem;
-  }
-
-  .detalhes-avaliacao-status,
-  .detalhes-avaliacao-nota,
-  .detalhes-avaliacao-resenha {
-    font-size: 1rem;
+  .detalhes-poster {
+    width: 200px;
   }
 }
 
 @media (max-width: 480px) {
-  .detalhes-avaliacao-container {
-    padding: 4rem 1rem 1rem; /* Ajuste no padding para dispositivos pequenos */
+  .detalhes-container {
+    padding: 4rem 1rem 1rem;
   }
-
-  .detalhes-avaliacao-poster {
-    width: 120px;
+  .detalhes-poster {
+    width: 150px;
   }
-
-  .detalhes-avaliacao-titulo {
-    font-size: 1.4rem;
-  }
-
-  .detalhes-avaliacao-resenha {
-    font-size: 0.9rem;
+  .detalhes-titulo {
+    font-size: 1.6rem;
   }
 }

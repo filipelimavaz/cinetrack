@@ -6,11 +6,10 @@ function Cadastro() {
     nome: '',
     sobrenome: '',
     email: '',
-    dataNascimento: '', // <- Aqui!
+    dataNascimento: '',
     usuario: '',
     senha: ''
   });
-  
 
   const navigate = useNavigate();
 
@@ -21,27 +20,41 @@ function Cadastro() {
     }));
   };
 
+  const gerarIdUnico = () => {
+    if (crypto?.randomUUID) {
+      return crypto.randomUUID(); // Gera um UUID v4
+    } else {
+      // Fallback: timestamp + número aleatório
+      return `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Verifica se todos os campos foram preenchidos
     const camposVazios = Object.values(formData).some(val => !val.trim());
     if (camposVazios) {
       alert('Preencha todos os campos.');
       return;
     }
 
-    // Simulação de armazenamento no localStorage
     const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
     const usuarioExistente = usuarios.find(u => u.usuario === formData.usuario);
     if (usuarioExistente) {
       alert('Nome de usuário já cadastrado!');
       return;
     }
 
-    usuarios.push(formData);
+    const novoUsuario = {
+      id: gerarIdUnico(),
+      ...formData
+    };
+
+    usuarios.push(novoUsuario);
     localStorage.setItem('usuarios', JSON.stringify(usuarios));
-    alert('Cadastro realizado com sucesso!');
+
+    alert(`Cadastro realizado com sucesso!\nSeu ID: ${novoUsuario.id}`);
     navigate('/login');
   };
 
