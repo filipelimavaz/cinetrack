@@ -73,7 +73,7 @@ const Home = () => {
                   className="poster-clickable"
                 />
               </Link>
-              <button className="avaliar-btn" onClick={() => console.log('Avaliar clicado')}>Avaliar</button>
+            <Link to={`/avaliar/${item.media_type}/${item.id}`} className="avaliar-btn">Avaliar</Link>
             </div>
           ))}
         </div>
@@ -103,8 +103,8 @@ const Home = () => {
                             className="poster-clickable"
                           />
                         </Link>
-                        <button className="avaliar-btn" onClick={() => console.log('Avaliar clicado')}>Avaliar</button>
-                      </div>
+                    <Link to={`/avaliar/filme/${filme.id}`} className="avaliar-btn">Avaliar</Link>                      
+                    </div>
                     ))}
                   </div>
                   <button className="carousel-btn carousel-btn-right" onClick={() => scrollRight(`filme-${genero.id}`)}>&gt;</button>
@@ -127,8 +127,7 @@ const Home = () => {
                             className="poster-clickable"
                           />
                         </Link>
-                        <button className="avaliar-btn" onClick={() => console.log('Avaliar clicado')}>Avaliar</button>
-                      </div>
+                      <Link to={`/avaliar/serie/${serie.id}`} className="avaliar-btn">Avaliar</Link>                      </div>
                     ))}
                   </div>
                   <button className="carousel-btn carousel-btn-right" onClick={() => scrollRight(`serie-${genero.id}`)}>&gt;</button>

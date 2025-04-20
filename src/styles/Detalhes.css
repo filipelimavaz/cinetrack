@@ -1,0 +1,116 @@
+/* Reset básico para garantir que tudo fique consistente */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Container específico para a página de detalhes de avaliação */
+.detalhes-avaliacao-container {
+  padding: 5rem 2rem 2rem; /* Espaço extra no topo devido ao header fixo */
+  max-width: 900px;
+  margin: 0 auto;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Layout de conteúdo da página de detalhes */
+.detalhes-avaliacao-conteudo {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+  text-align: left;
+}
+
+/* Estilo para o título e informações do filme */
+.detalhes-avaliacao-informacoes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* Estilo do título */
+.detalhes-avaliacao-titulo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Estilo do status e da nota */
+.detalhes-avaliacao-status,
+.detalhes-avaliacao-nota {
+  font-size: 1rem;
+  color: #888;
+}
+
+.detalhes-avaliacao-status {
+  font-weight: bold;
+}
+
+/* Imagem do poster com borda arredondada */
+.detalhes-avaliacao-poster {
+  border-radius: 8px;
+  width: 200px; /* Tamanho fixo para o poster */
+  height: auto;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+/* Estilo da resenha centralizada abaixo das informações */
+.detalhes-avaliacao-resenha {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.5;
+  max-width: 700px;
+  margin: 1.5rem auto;
+  text-align: center;
+}
+
+.detalhes-avaliacao-resenha h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Ajustes responsivos para a página de detalhes */
+@media (max-width: 768px) {
+  .detalhes-avaliacao-conteudo {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detalhes-avaliacao-poster {
+    width: 150px;
+  }
+
+  .detalhes-avaliacao-titulo {
+    font-size: 1.6rem;
+  }
+
+  .detalhes-avaliacao-status,
+  .detalhes-avaliacao-nota,
+  .detalhes-avaliacao-resenha {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .detalhes-avaliacao-container {
+    padding: 4rem 1rem 1rem; /* Ajuste no padding para dispositivos pequenos */
+  }
+
+  .detalhes-avaliacao-poster {
+    width: 120px;
+  }
+
+  .detalhes-avaliacao-titulo {
+    font-size: 1.4rem;
+  }
+
+  .detalhes-avaliacao-resenha {
+    font-size: 0.9rem;
+  }
+}

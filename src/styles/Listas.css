@@ -22,12 +22,15 @@
   .carrossel {
     display: flex;
     overflow-x: auto;
-    gap: 1rem;
+    scroll-behavior: smooth;
+    gap: 10px;
     padding-bottom: 1rem;
+    scrollbar-width: none;
+  -ms-overflow-style: none;
   }
   
   .carrossel::-webkit-scrollbar {
-    height: 8px;
+    display: none;
   }
   
   .carrossel::-webkit-scrollbar-thumb {
@@ -37,26 +40,43 @@
   
   .card {
     flex: 0 0 auto;
-    width: 140px;
+    min-width: 140px;
+    min-width: 140px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     text-decoration: none;
     color: inherit;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease;
+    position: relative;
   }
   
   .card:hover {
     transform: scale(1.05);
   }
   
-  .poster {
+  .card .poster {
     width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    height: auto;
+    object-fit: cover;
+    display: block;
   }
   
-  .nota {
+  .card .card-info {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.4rem;
+    text-align: center;
+  }
+  
+  .card .nota {
     color: #4caf50;
     font-weight: bold;
-    font-size: 0.85rem;
-    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
   }
   
