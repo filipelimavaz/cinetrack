@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import '../styles/Avaliacao.css';
 
@@ -13,6 +14,7 @@ const Avaliacao = () => {
   const [status, setStatus] = useState('deseja_assistir');
   const [carregando, setCarregando] = useState(true);
 
+  const navigate = useNavigate();
   const tipoAPI = tipo === 'filme' ? 'movie' : tipo === 'serie' ? 'tv' : tipo;
 
   useEffect(() => {
@@ -53,6 +55,8 @@ const Avaliacao = () => {
     const chave = `avaliacao-${tipoAPI}-${id}-${user?.id || 'anonimo'}`;
     localStorage.setItem(chave, JSON.stringify(avaliacao));
     alert('Avaliação salva com sucesso!');
+
+    navigate('/');
   };
 
   if (carregando) return <p>Carregando...</p>;
