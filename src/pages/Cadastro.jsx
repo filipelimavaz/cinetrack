@@ -115,6 +115,18 @@ function Cadastro() {
         <button type="submit">
           Cadastrar
         </button>
+
+        <div className="mt-4 text-center">
+          <p className="text-sm mb-2">Já possui uma conta?</p>
+          <button
+            type="button"
+            onClick={() => navigate('/login')}
+          
+          >
+            entre
+          </button>
+        </div>
+
       </form>
     </div>
   );
