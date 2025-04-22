@@ -54,7 +54,7 @@ function Cadastro() {
     usuarios.push(novoUsuario);
     localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
-    alert(`Cadastro realizado com sucesso!\nSeu ID: ${novoUsuario.id}`);
+    alert(`Cadastro realizado com sucesso!`);
     navigate('/login');
   };
 
@@ -112,7 +112,7 @@ function Cadastro() {
           className="w-full border p-2"
         />
 
-        <button type="submit" className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
+        <button type="submit">
           Cadastrar
         </button>
       </form>
