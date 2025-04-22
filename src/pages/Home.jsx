@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import '../styles/Home.css';
 
 const Home = () => {
-  const [lancamentos, setLancamentos] = useState([]);
+  const [populares, setPopulares] = useState([]);
+  const [filmesLancamento, setFilmesLancamento] = useState([]);
+  const [seriesLancamento, setSeriesLancamento] = useState([]);
   const [generosFilmes, setGenerosFilmes] = useState([]);
   const [generosSeries, setGenerosSeries] = useState([]);
   const [filmesPorGenero, setFilmesPorGenero] = useState({});
@@ -13,7 +15,15 @@ const Home = () => {
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR`)
       .then(res => res.json())
-      .then(data => setLancamentos(data.results));
+      .then(data => setPopulares(data.results));
+
+    fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR`)
+    .then(res => res.json())
+    .then(data => setFilmesLancamento(data.results));
+
+    fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR`)
+    .then(res => res.json())
+    .then(data => setSeriesLancamento(data.results));
 
     fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=pt-BR`)
       .then(res => res.json())
@@ -60,11 +70,11 @@ const Home = () => {
 
   return (
     <div className="home-content">
-      <h1>Lançamentos</h1>
+      <h1>Populares da semana</h1>
       <div className="carousel-container">
-        <button className="carousel-btn carousel-btn-left" onClick={() => scrollLeft('lancamentos')}>&lt;</button>
-        <div className="carousel" ref={el => (carrosselRefs.current['lancamentos'] = el)}>
-          {lancamentos.map(item => (
+        <button className="carousel-btn carousel-btn-left" onClick={() => scrollLeft('populares')}>&lt;</button>
+        <div className="carousel" ref={el => (carrosselRefs.current['populares'] = el)}>
+          {populares.map(item => (
             <div key={item.id} className="carousel-item">
               <Link to={`/detalhes/${item.media_type}/${item.id}`}>
                 <img
@@ -77,7 +87,47 @@ const Home = () => {
             </div>
           ))}
         </div>
-        <button className="carousel-btn carousel-btn-right" onClick={() => scrollRight('lancamentos')}>&gt;</button>
+        <button className="carousel-btn carousel-btn-right" onClick={() => scrollRight('populares')}>&gt;</button>
+      </div>
+
+      <h1>Lançamentos (filmes)</h1>
+      <div className="carousel-container">
+        <button className="carousel-btn carousel-btn-left" onClick={() => scrollLeft('lancamentos-filme')}>&lt;</button>
+        <div className="carousel" ref={el => (carrosselRefs.current['lancamentos-filme'] = el)}>
+          {filmesLancamento.map(filme => (
+            <div key={filme.id} className="carousel-item">
+              <Link to={`/detalhes/movie/${filme.id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w200${filme.poster_path}`}
+                  alt={filme.title || filme.name}
+                  className="poster-clickable"
+                />
+              </Link>
+            <Link to={`/avaliar/movie/${filme.id}`} className="avaliar-btn">Avaliar</Link>
+            </div>
+          ))}
+        </div>
+        <button className="carousel-btn carousel-btn-right" onClick={() => scrollRight('lancamentos-filme')}>&gt;</button>
+      </div>
+
+      <h1>Lançamentos (series)</h1>
+      <div className="carousel-container">
+        <button className="carousel-btn carousel-btn-left" onClick={() => scrollLeft('lancamentos-serie')}>&lt;</button>
+        <div className="carousel" ref={el => (carrosselRefs.current['lancamentos-serie'] = el)}>
+          {seriesLancamento.map(serie => (
+            <div key={serie.id} className="carousel-item">
+              <Link to={`/detalhes/tv/${serie.id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w200${serie.poster_path}`}
+                  alt={serie.title || serie.name}
+                  className="poster-clickable"
+                />
+              </Link>
+            <Link to={`/avaliar/tv/${serie.id}`} className="avaliar-btn">Avaliar</Link>
+            </div>
+          ))}
+        </div>
+        <button className="carousel-btn carousel-btn-right" onClick={() => scrollRight('lancamentos-serie')}>&gt;</button>
       </div>
 
       {generosFilmes.map((genero) => {
@@ -127,7 +177,8 @@ const Home = () => {
                             className="poster-clickable"
                           />
                         </Link>
-                      <Link to={`/avaliar/serie/${serie.id}`} className="avaliar-btn">Avaliar</Link>                      </div>
+                      <Link to={`/avaliar/serie/${serie.id}`} className="avaliar-btn">Avaliar</Link>
+                      </div>
                     ))}
                   </div>
                   <button className="carousel-btn carousel-btn-right" onClick={() => scrollRight(`serie-${genero.id}`)}>&gt;</button>
