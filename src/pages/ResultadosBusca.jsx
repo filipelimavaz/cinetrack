@@ -15,22 +15,27 @@ function ResultadoBusca() {
       .then(res => res.json())
       .then(data => {
         const resultadosFiltrados = data.results.filter(
-          item => item.media_type === 'movie' || item.media_type === 'tv'
+          item =>
+            (item.media_type === 'movie' || item.media_type === 'tv') &&
+            item.poster_path // filtra apenas os que têm imagem
         );
         setResultados(resultadosFiltrados);
       });
   }, [termo]);
 
   return (
-    <div className="resultados-container">
+    <div>
       <h2 className="resultados-titulo">Resultados para: {termo}</h2>
-      <div className="resultados-grid">
-        {resultados.map((item) => (
-          <div key={item.id} className="resultado-card">
-            <img
-              src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
-              alt={item.title || item.name}
-            />
+      <div className="grid-container">
+        {resultados.map(item => (
+          <div key={item.id} className="carousel-item">
+            <Link to={`/detalhes/${item.media_type}/${item.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                alt={item.title || item.name}
+                className="poster-clickable"
+              />
+            </Link>
             <Link to={`/avaliar/${item.media_type}/${item.id}`} className="avaliar-btn">
               Avaliar
             </Link>

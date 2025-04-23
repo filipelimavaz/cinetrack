@@ -1,48 +1,43 @@
-.resultados-container {
-  padding-top: 80px; /* Mesma altura usada para o header fixo */
-  padding-left: 16px;
-  padding-right: 16px;
+
+.resultados-titulo{
+  padding: 80px 20px 20px;
+  box-sizing: border-box;
 }
 
-.resultados-titulo {
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  padding: 0px 20px 20px;
+  box-sizing: border-box;
 }
 
-.resultados-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
+.carousel-item {
+  text-align: center;
 }
 
-.resultado-card {
-  width: 200px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.resultado-card img {
+.poster-clickable {
   width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.poster-clickable:hover {
+  transform: scale(1.05);
 }
 
 .avaliar-btn {
-  display: block;
-  text-align: center;
-  background-color: #3b82f6;
+  display: inline-block;
+  margin-top: 5px;
+  padding: 6px 12px;
+  background-color: #ff4757;
   color: white;
-  padding: 6px 0;
-  width: 100%;
-  font-weight: 500;
   text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
   transition: background-color 0.3s ease;
 }
 
 .avaliar-btn:hover {
-  background-color: #2563eb;
+  background-color: #e84118;
 }
