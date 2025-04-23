@@ -31,6 +31,7 @@ h2 {
 }
 
 .carousel-item {
+  position: relative; /* necessário para o botão ficar dentro dos limites */
   min-width: 200px;
   max-width: 200px;
   flex: 0 0 auto;
@@ -41,10 +42,10 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  position: relative;
   height: 300px;
   transition: transform 0.3s ease;
 }
+
 
 .carousel-item img {
   width: 100%;
@@ -60,7 +61,8 @@ h2 {
 .avaliar-btn {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
   background-color: #000 !important;
   color: white !important;
   padding: 10px 0;
@@ -69,13 +71,17 @@ h2 {
   text-decoration: none;
   transition: background-color 0.3s ease;
   border: none;
-  border-radius: 0;
+  border-radius: 0 0 8px 8px; /* arredondamento apenas na parte inferior */
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .avaliar-btn:hover {
   background-color: #333 !important;
 }
+
 
 .carousel-btn {
   position: absolute;
