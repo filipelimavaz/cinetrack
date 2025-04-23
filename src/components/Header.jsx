@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import '../styles/Header.css';
+import logo from '../assets/CineTrack.png'; // 👈 adicione essa linha
 
 function Header() {
   const { user, logout } = useUser();
@@ -46,7 +47,7 @@ function Header() {
   return (
     <header className={`header ${showHeader ? '' : 'hidden'}`}>
       <Link to="/home" className="logo">
-        <h1>CineTrack</h1>
+        <img src={logo} alt="CineTrack Logo" className="logo-img" />
       </Link>
 
       {user && (

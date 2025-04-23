@@ -17,6 +17,10 @@ body {
     z-index: 1000;
     box-sizing: border-box; /* Para garantir que o padding não ultrapasse a largura da tela */
   }
+  .logo-img {
+    height: 150px; 
+    object-fit: contain;
+  }
   
   .logo {
     font-size: 1rem;
