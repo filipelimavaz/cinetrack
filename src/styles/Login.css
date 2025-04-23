@@ -1,0 +1,81 @@
+body{
+    margin:0;
+}
+
+ .main{
+    width: 100vw;
+     height: 100vh;
+    background: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+.left-login{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.welcome-text{
+    color: white;
+}
+.left-login p{
+    color: white;
+}
+.bg-image{
+    height: 30vh;
+}
+
+.right-login{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-login{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    background: rgb(24, 22, 37);
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px rgba(32, 32, 32, 0.199);
+}
+
+.title-login{
+    color: white;
+}
+.text-sm{
+    color: white;
+}
+
+.button-entrar{
+     width: 100%;
+     padding: 16px 0px;
+     margin: 25px;
+     border: none;
+     border-radius: 10px;
+     outline: none;
+     color: black;
+     background: green;
+     cursor: pointer;
+     box-shadow: 0px 10px 40px rgba(32, 32, 32, 0.199);
+}
+
+.button-cadastrar{
+    width: 100%;
+    padding: 16px 0px;
+     margin: 25px;
+     border: none;
+     border-radius: 10px;
+     outline: none;
+     color: black;
+     background: rgb(255, 255, 255);
+     cursor: pointer;
+     box-shadow: 0px 10px 40px rgba(32, 32, 32, 0.199);
+}

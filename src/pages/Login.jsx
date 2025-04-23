@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
+import '../styles/Login.css'; // Adicione o caminho correto para o seu CSS
 
 function Login() {
   const [usuario, setUsuario] = useState('');
@@ -28,46 +29,59 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm"
-      >
-        <h2 className="text-xl font-bold mb-4 text-center">Login</h2>
-
-        <input
-          type="text"
-          placeholder="Usuário"
-          value={usuario}
-          onChange={(e) => setUsuario(e.target.value)}
-          className="w-full border p-2 mb-4"
+    <div className="main">
+      <div className="left-login">
+        <img
+          src="CineTrack.png" // Substitua pelo URL da sua imagem
+          alt="Imagem de fundo"
+          className="bg-image"
         />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          className="w-full border p-2 mb-4"
-        />
-
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+        <h1 className="welcome-text">Bem-vindo ao CineTrack</h1>
+        <p className="description">
+          O melhor lugar para acompanhar suas séries e filmes favoritos.
+        </p>
+      </div>
+      <div className="right-login">
+        <form
+          onSubmit={handleSubmit}
+          className="form-login"
         >
-          Entrar
-        </button>
+          <h2 className="title-login">Login</h2>
 
-        <div className="mt-4 text-center">
-          <p className="text-sm mb-2">Não tem uma conta?</p>
+          <input
+            type="text"
+            placeholder="Usuário"
+            value={usuario}
+            onChange={(e) => setUsuario(e.target.value)}
+            className="w-full border p-2 mb-4"
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            className="w-full border p-2 mb-4"
+          />
+
           <button
-            type="button"
-            onClick={() => navigate('/cadastro')}
-            className="text-blue-600 hover:underline"
+            type="submit"
+            className="button-entrar"
           >
-            Criar conta
+            Entrar
           </button>
-        </div>
-      </form>
+
+          <div className="mt-4 text-center">
+            <p className="text-sm">Não tem uma conta?</p>
+            <button
+              type="button"
+              onClick={() => navigate('/cadastro')}
+              className="button-cadastrar"
+            >
+              Criar conta
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
