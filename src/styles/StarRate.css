@@ -1,0 +1,11 @@
+/* src/styles/StarRate.css */
+.star-rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.star {
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}

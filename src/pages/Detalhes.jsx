@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import '../styles/Detalhes.css';
+import StarRate from '../components/starRate';
 
 const Detalhes = () => {
   const { tipo, id } = useParams();
@@ -88,9 +89,9 @@ const Detalhes = () => {
           </p>
         </div>
       </div>
-
       <div className="detalhes-avaliacoes">
         <h2>Avaliações</h2>
+        <StarRate />   {/* Componente da estrela de avaliação*/}      
         {avaliacoes.length === 0 && <p>Nenhuma avaliação ainda.</p>}
         {avaliacoes.map((av, idx) => (
         <div key={idx} className="avaliacao-card">
