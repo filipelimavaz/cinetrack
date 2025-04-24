@@ -5,6 +5,14 @@
   align-items: center;
 }
 
+.star-rating .star {
+  font-size: 2rem;
+  color: #ccc; /* Default color for unselected stars */
+  margin: 0 5px;
+}
+.star-rating .star.selected {
+  color: #f39c12; /* Color for selected stars */
+}
 .star {
   cursor: pointer;
   transition: color 0.2s ease-in-out;

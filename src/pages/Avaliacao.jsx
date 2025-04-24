@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import '../styles/Avaliacao.css';
+import StarRate from '../components/starRate';
 
 const Avaliacao = () => {
   const { tipo, id } = useParams();
@@ -25,7 +25,7 @@ const Avaliacao = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        setTitulo(data.title || data.name); // Obtendo título do filme ou série
+        setTitulo(data.title || data.name);
         setPosterPath(data.poster_path || '');
       })
       .catch((err) => console.error('Erro ao carregar dados:', err))
@@ -63,10 +63,7 @@ const Avaliacao = () => {
 
   return (
     <div className="container">
-      
-
       <div className="titulo-poster-container">
-        {/* Exibindo o pôster e a nota ao lado */}
         {posterPath && (
           <img
             src={`https://image.tmdb.org/t/p/w200${posterPath}`}
@@ -75,24 +72,13 @@ const Avaliacao = () => {
           />
         )}
 
-<div className="info-container">
-  <h2 className="titulo-pagina">Avaliar: {titulo}</h2>
+        <div className="info-container">
+          <h2 className="titulo-pagina">Avaliar: {titulo}</h2>
 
-  {status !== 'deseja_assistir' && (
-    <div className="nota-container">
-      <label>
-        Nota (1 a 10):
-        <input
-          type="number"
-          min="1"
-          max="10"
-          value={nota}
-          onChange={(e) => setNota(Number(e.target.value))}
-          className="border p-2 w-full"
-        />
-      </label>
-    </div>
-          )}
+          <StarRate
+            rate={nota}
+            onRate={setNota}
+          />
         </div>
       </div>
 

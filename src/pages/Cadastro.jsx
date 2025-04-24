@@ -122,7 +122,7 @@ function Cadastro() {
           <div className="text-botton">
             <p className="text">Já possui uma conta?</p>
             <button
-              className="button-entrar"
+              className="button-entrar-Cd"
               type="button"
               onClick={() => navigate('/login')}
             

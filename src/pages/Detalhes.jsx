@@ -91,7 +91,7 @@ const Detalhes = () => {
       </div>
       <div className="detalhes-avaliacoes">
         <h2>Avaliações</h2>
-        <StarRate />   {/* Componente da estrela de avaliação*/}      
+            
         {avaliacoes.length === 0 && <p>Nenhuma avaliação ainda.</p>}
         {avaliacoes.map((av, idx) => (
         <div key={idx} className="avaliacao-card">

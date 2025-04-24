@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import '../styles/Header.css';
-import logo from '../assets/CineTrack.png'; // 👈 adicione essa linha
+import logo from '../assets/CineTrack.png'; 
 
 function Header() {
   const { user, logout } = useUser();

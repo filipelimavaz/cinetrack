@@ -18,7 +18,7 @@ body {
     box-sizing: border-box; /* Para garantir que o padding não ultrapasse a largura da tela */
   }
   .logo-img {
-    height: 150px; 
+    height: 80px; 
     object-fit: contain;
   }
   

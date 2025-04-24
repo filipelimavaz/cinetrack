@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import '../styles/StarRate.css';
 
-export default function StarRate() {
-  const [rate,  setRate]  = useState(0);
-  const [hover, setHover] = useState(0);
+export default function StarRate({ rate, onRate }) {
+  const [hover, setHover] = useState(0)
 
   return (
     <div className="star-rating">
@@ -14,7 +13,7 @@ export default function StarRate() {
             type="radio"
             name="rating"
             value={star}
-            onClick={() => setRate(star)}
+            onClick={() => onRate(star)}
             style={{ display: 'none' }}
           />
           <FaStar
