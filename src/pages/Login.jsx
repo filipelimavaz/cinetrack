@@ -30,58 +30,62 @@ function Login() {
 
   return (
     <div className="main">
-      <div className="left-login">
-        <img
-          src="CineTrack.png" // Substitua pelo URL da sua imagem
-          alt="Imagem de fundo"
-          className="bg-image"
-        />
-        <h1 className="welcome-text">Bem-vindo ao CineTrack</h1>
-        <p className="description">
-          O melhor lugar para acompanhar suas séries e filmes favoritos.
-        </p>
-      </div>
-      <div className="right-login">
-        <form
-          onSubmit={handleSubmit}
-          className="form-login"
-        >
-          <h2 className="title-login">Login</h2>
-
-          <input
-            type="text"
-            placeholder="Usuário"
-            value={usuario}
-            onChange={(e) => setUsuario(e.target.value)}
-            className="w-full border p-2 mb-4"
+        <div className="left-login">
+          <img
+            src="CineTrack.png" 
+            alt="Imagem de fundo"
+            className="bg-image"
           />
-          <input
-            type="password"
-            placeholder="Senha"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            className="w-full border p-2 mb-4"
-          />
-
-          <button
-            type="submit"
-            className="button-entrar"
+          <h1 className="welcome-text">Bem-vindo ao CineTrack</h1>
+          <p className="description">
+            O melhor lugar para acompanhar suas séries e filmes favoritos.
+          </p>
+        </div>
+        <div className="right-login">
+          <form
+            onSubmit={handleSubmit}
+            className="form-login"
           >
-            Entrar
-          </button>
+            <h2 className="title-login">Login</h2>
+            
+            <p className="subtitle-login">Nome ou email de usuario</p>
+            <input
+              type="text"
+              placeholder="Usuário"
+              value={usuario}
+              onChange={(e) => setUsuario(e.target.value)}
+              className="box-user"
+            />
+            
+            <p className="subtitle-senha">Senha</p>
+            <input
+              type="password"
+              placeholder="Senha"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              className="box-senha"
+            />
 
-          <div className="mt-4 text-center">
-            <p className="text-sm">Não tem uma conta?</p>
             <button
-              type="button"
-              onClick={() => navigate('/cadastro')}
-              className="button-cadastrar"
+              type="submit"
+              className="button-entrar"
             >
-              Criar conta
+              Entrar
             </button>
+
+            <div className="mt-4 text-center">
+              <p className="text-sm">Não tem uma conta? </p>
+              <button
+                type="button"
+                onClick={() => navigate('/cadastro')}
+                className="button-cadastrar"
+              >
+                Criar conta
+              </button>
+            </div>
+          </form>
           </div>
-        </form>
-      </div>
+      
     </div>
   );
 }

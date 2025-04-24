@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/Cadastro.css'; 
 
 function Cadastro() {
   const [formData, setFormData] = useState({
@@ -59,75 +60,94 @@ function Cadastro() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md w-full max-w-md space-y-4">
-        <h2 className="text-2xl font-bold text-center">Cadastrar</h2>
+    <div className="main">
+       
+      <div className="center-main">
+        <form onSubmit={handleSubmit} className="form-cadastro">
+          <h2 className="text-Cadastrar">Cadastrar</h2>
 
-        <input
-          type="text"
-          name="nome"
-          placeholder="Nome"
-          value={formData.nome}
-          onChange={handleChange}
-          className="w-full border p-2"
-        />
-        <input
-          type="text"
-          name="sobrenome"
-          placeholder="Sobrenome"
-          value={formData.sobrenome}
-          onChange={handleChange}
-          className="w-full border p-2"
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full border p-2"
-        />
-        <input
-          type="date"
-          name="dataNascimento"
-          placeholder="Data de nascimento"
-          value={formData.dataNascimento}
-          onChange={handleChange}
-          className="w-full border p-2"
-        />
-        <input
-          type="text"
-          name="usuario"
-          placeholder="Nome de usuário"
-          value={formData.usuario}
-          onChange={handleChange}
-          className="w-full border p-2"
-        />
-        <input
-          type="password"
-          name="senha"
-          placeholder="Senha"
-          value={formData.senha}
-          onChange={handleChange}
-          className="w-full border p-2"
-        />
+          <input
+            type="text"
+            name="nome"
+            placeholder="Nome"
+            value={formData.nome}
+            onChange={handleChange}
+            className="subtitle-cadastro"
+          />
+          <input
+            type="text"
+            name="sobrenome"
+            placeholder="Sobrenome"
+            value={formData.sobrenome}
+            onChange={handleChange}
+            className="subtitle-cadastro"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            className="subtitle-cadastro"
+          />
+          <input
+            type="date"
+            name="dataNascimento"
+            placeholder="Data de nascimento"
+            value={formData.dataNascimento}
+            onChange={handleChange}
+            className="subtitle-cadastro"
+          />
+          <input
+            type="text"
+            name="usuario"
+            placeholder="Nome de usuário"
+            value={formData.usuario}
+            onChange={handleChange}
+            className="subtitle-cadastro"
+          />
+          <input
+            type="password"
+            name="senha"
+            placeholder="Senha"
+            value={formData.senha}
+            onChange={handleChange}
+            className="subtitle-cadastro"
+          />
 
-        <button type="submit">
-          Cadastrar
-        </button>
-
-        <div className="mt-4 text-center">
-          <p className="text-sm mb-2">Já possui uma conta?</p>
-          <button
-            type="button"
-            onClick={() => navigate('/login')}
-          
-          >
-            entre
+          <button type="submit" className='button-cadastrar'>
+            Cadastrar
           </button>
-        </div>
 
-      </form>
+          <div className="text-botton">
+            <p className="text">Já possui uma conta?</p>
+            <button
+              className="button-entrar"
+              type="button"
+              onClick={() => navigate('/login')}
+            
+            >
+              Entre
+            </button>
+          </div>
+        </form>
+      </div>
+      <div className='left-main'>
+          <img
+            src="CineTrack.png" 
+            alt="Imagem de fundo"
+            className="bg-image"
+          />
+          <h1 className="welcome-text">Conheça já o CineTrack!</h1>
+          <p className="description">
+            O melhor lugar para acompanhar suas séries e filmes favoritos.
+          </p>
+          <p className="description">
+            Crie sua conta e tenha acesso a um mundo de entretenimento.
+          </p>
+
+      </div>  
+     
     </div>
   );
 }
