@@ -100,19 +100,16 @@ const Listas = () => {
       <div className="secao-lista">
         <h3 className="titulo-categoria">Vistos</h3>
         {renderList('visto', avaliacoes.visto)}
-        <button className="botao-lista">Ver mais</button>
       </div>
 
       <div className="secao-lista">
         <h3 className="titulo-categoria">Dropados</h3>
         {renderList('dropado', avaliacoes.dropado)}
-        <button className="botao-lista">Ver mais</button>
       </div>
 
       <div className="secao-lista">
         <h3 className="titulo-categoria">Desejo Assistir</h3>
         {renderList('deseja_assistir', avaliacoes.deseja_assistir)}
-        <button className="botao-lista">Ver mais</button>
       </div>
     </div>
   );
