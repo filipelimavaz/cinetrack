@@ -12,18 +12,17 @@ h2 {
 
 .carousel-container {
   position: relative;
-  display: flex;
-  align-items: center;
 }
 
 .carousel {
   display: flex;
-  overflow-x: auto;
   scroll-behavior: smooth;
-  gap: 10px;
-  padding: 10px 10px;
+  gap: 0.5rem;
+  padding: 9px ;
   scrollbar-width: none;
-  -ms-overflow-style: none;
+  scroll-padding: 1rem;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
 }
 
 .carousel::-webkit-scrollbar {
@@ -81,7 +80,6 @@ h2 {
   background-color: #333;
 }
 
-
 .carousel-btn {
   position: absolute;
   top: 50%;
@@ -104,9 +102,9 @@ h2 {
 }
 
 .carousel-btn-left {
-  left: 2px;
+  left: 3px;
 }
 
 .carousel-btn-right {
-  right: 2px;
+  right: 3px;
 }
