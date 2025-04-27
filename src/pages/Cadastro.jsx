@@ -82,35 +82,38 @@ function Cadastro() {
         <form onSubmit={handleSubmit} className="form-cadastro">
           <h2 className="text-Cadastrar">Cadastrar</h2>
 
-          <input
-            type="text"
-            name="nome"
-            placeholder="Nome"
-            value={formData.nome}
-            onChange={handleChange}
-            className="subtitle-cadastro"
-          />
-          <input
-            type="text"
-            name="sobrenome"
-            placeholder="Sobrenome"
-            value={formData.sobrenome}
-            onChange={handleChange}
-            className="subtitle-cadastro"
-          />
+          <div className="nome-sobrenome-data">
+            <input
+              type="text"
+              name="nome"
+              placeholder="Nome"
+              value={formData.nome}
+              onChange={handleChange}
+              className="subtitle-cadastro input-terco"
+            />
+            <input
+              type="text"
+              name="sobrenome"
+              placeholder="Sobrenome"
+              value={formData.sobrenome}
+              onChange={handleChange}
+              className="subtitle-cadastro input-terco"
+            />
+            <input
+              type="date"
+              name="dataNascimento"
+              placeholder="Data de nascimento"
+              value={formData.dataNascimento}
+              onChange={handleChange}
+              className="subtitle-cadastro input-terco"
+            />
+          </div>
+          
           <input
             type="email"
             name="email"
             placeholder="Email"
             value={formData.email}
-            onChange={handleChange}
-            className="subtitle-cadastro"
-          />
-          <input
-            type="date"
-            name="dataNascimento"
-            placeholder="Data de nascimento"
-            value={formData.dataNascimento}
             onChange={handleChange}
             className="subtitle-cadastro"
           />
@@ -138,13 +141,14 @@ function Cadastro() {
           <div className="text-botton">
             <p className="text">Já possui uma conta?</p>
             <button
-              className="button-entrar-Cd"
-              type="button"
-              onClick={() => navigate('/login')}
+                className="button-entrar-Cd"
+                type="button"
+                onClick={() => navigate('/login')}
             >
-              Entre
+                Entrar
             </button>
-          </div>
+        </div>
+
         </form>
       </div>
       <div className='left-main'>
