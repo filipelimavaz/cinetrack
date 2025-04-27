@@ -11,6 +11,8 @@ function Perfil() {
   const carrosselRefs = useRef({});
 
   const calcularIdade = (dataNascimento) => {
+    if (!dataNascimento) return null;
+
     const hoje = new Date();
     const nascimento = new Date(dataNascimento);
     let idade = hoje.getFullYear() - nascimento.getFullYear();
@@ -21,7 +23,7 @@ function Perfil() {
     return idade;
   };
 
-  const idade = user?.nascimento ? calcularIdade(user.nascimento) : null;
+  const idade = user?.dataNascimento ? calcularIdade(user.dataNascimento) : null;
 
   useEffect(() => {
     if (!user) return;
@@ -63,25 +65,22 @@ function Perfil() {
       <div className="perfil-container">
         <h2>Perfil de {user?.usuario}</h2>
         <div className="perfil-info">
-          <p><span>Idade:</span> {idade} anos</p>
+          <p><span>Idade:</span> {idade !== null ? `${idade} anos` : 'Idade não informada'}</p>
           <p><span>Email:</span> {user?.email}</p>
         </div>
 
         <div className="assistidos-recentemente">
-
           <h3>Assistidos recentemente</h3>
 
           {avaliacoesRecentes.length === 0 ? (
             <p>Você ainda não adicionou nenhum título como "desejo assistir".</p>
           ) : (
-
-          <div className="perfil-carousel-container">
-
+            <div className="perfil-carousel-container">
               <button className="perfil-carousel-btn perfil-carousel-btn-left" onClick={() => scrollLeft(`perfil-serie-${user.id}`)}>
                 &lt;
               </button>
 
-            <div id={`perfil-serie-${user.id}`} className="perfil-carrossel" ref={el => carrosselRefs.current[`perfil-serie-${user.id}`] = el}>
+              <div id={`perfil-serie-${user.id}`} className="perfil-carrossel" ref={el => carrosselRefs.current[`perfil-serie-${user.id}`] = el}>
                 {avaliacoesRecentes.map((avaliacao, index) => (
                   <Link
                     key={index}
@@ -101,10 +100,8 @@ function Perfil() {
                 ))}
               </div>
 
-            <button className="perfil-carousel-btn perfil-carousel-btn-right" 
-            onClick={() => scrollRight(`perfil-serie-${user.id}`)}>&gt;</button>
-
-          </div>
+              <button className="perfil-carousel-btn perfil-carousel-btn-right" onClick={() => scrollRight(`perfil-serie-${user.id}`)}>&gt;</button>
+            </div>
           )}
         </div>
 
@@ -114,17 +111,10 @@ function Perfil() {
           {desejos.length === 0 ? (
             <p>Você ainda não adicionou nenhum título como "desejo assistir".</p>
           ) : (
-
             <div className="perfil-carousel-container">
+              <button className="perfil-carousel-btn perfil-carousel-btn-left" onClick={() => scrollLeft(`perfil-desejos-${user.id}`)}>&lt;</button>
 
-              <button className="perfil-carousel-btn perfil-carousel-btn-left"
-              onClick={() => scrollLeft(`perfil-desejos-${user.id}`)}>&lt;</button>
-
-              <div
-                id={`perfil-desejos-${user.id}`}
-                className="perfil-carrossel"
-                ref={el => carrosselRefs.current[`perfil-desejos-${user.id}`] = el}
-              >
+              <div id={`perfil-desejos-${user.id}`} className="perfil-carrossel" ref={el => carrosselRefs.current[`perfil-desejos-${user.id}`] = el}>
                 {desejos.map((desejo, index) => (
                   <Link
                     key={index}
@@ -142,9 +132,7 @@ function Perfil() {
                 ))}
               </div>
 
-              <button className="perfil-carousel-btn perfil-carousel-btn-right" 
-              onClick={() => scrollRight(`perfil-desejos-${user.id}`)}>&gt;</button>
-
+              <button className="perfil-carousel-btn perfil-carousel-btn-right" onClick={() => scrollRight(`perfil-desejos-${user.id}`)}>&gt;</button>
             </div>
           )}
         </div>
