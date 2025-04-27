@@ -31,7 +31,7 @@ h2 {
 }
 
 .carousel-item {
-  position: relative; /* necessário para o botão ficar dentro dos limites */
+  position: relative;
   min-width: 200px;
   max-width: 200px;
   flex: 0 0 auto;
@@ -41,17 +41,16 @@ h2 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  height: 300px;
+  justify-content: flex-start;
+  height: 340px;
   transition: transform 0.3s ease;
 }
 
 
-.carousel-item img {
+.poster-clickable {
   width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
+  height: 320px;
+  display: flex;
 }
 
 .carousel-item:hover {
@@ -63,15 +62,15 @@ h2 {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #000 !important;
-  color: white !important;
-  padding: 10px 0;
+  padding: 5px 0;
+  background-color: #000;
+  color: white ;
   font-weight: 500;
   text-align: center;
   text-decoration: none;
   transition: background-color 0.3s ease;
   border: none;
-  border-radius: 0 0 8px 8px; /* arredondamento apenas na parte inferior */
+  border-radius: 0 0 8px 8px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -79,7 +78,7 @@ h2 {
 }
 
 .avaliar-btn:hover {
-  background-color: #333 !important;
+  background-color: #333;
 }
 
 
@@ -87,7 +86,7 @@ h2 {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0);
   color: white;
   border: none;
   padding: 10px 15px;
@@ -102,7 +101,6 @@ h2 {
 
 .carousel-btn:hover {
   opacity: 1;
-  background-color: rgba(0, 0, 0, 0.8); /* opcional: escurece um pouco mais no hover */
 }
 
 .carousel-btn-left {
