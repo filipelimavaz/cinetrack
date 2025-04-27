@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import '../styles/StarRate.css';
 
-export default function StarRate({ rate, onRate }) {
+export default function StarRate({ rate, onRate, readonly = false, size = '50px' }) {
   const [hover, setHover] = useState(null);
 
   const handleMouseMove = (event, starValue) => {
+    if (readonly) return;
     const { left, width } = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - left;
     const isHalf = x < width / 2;
@@ -13,6 +14,7 @@ export default function StarRate({ rate, onRate }) {
   };
 
   const handleClick = (event, starValue) => {
+    if (readonly) return;
     const { left, width } = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - left;
     const isHalf = x < width / 2;
@@ -38,12 +40,13 @@ export default function StarRate({ rate, onRate }) {
             onMouseMove={(e) => handleMouseMove(e, star)}
             onMouseLeave={() => setHover(null)}
             onClick={(e) => handleClick(e, star)}
+            style={{ width: size, height: size }} // Estabelecendo tamanho variável aqui
           >
             <div className="star-background">
-              <FaStar size={50} />
+              <FaStar size={parseInt(size)} />
             </div>
             <div className="star-foreground" style={{ width: `${fill}%` }}>
-              <FaStar size={50} />
+              <FaStar size={parseInt(size)} />
             </div>
           </div>
         );

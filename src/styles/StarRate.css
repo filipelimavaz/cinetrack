@@ -1,37 +1,38 @@
 .star-rating {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
-.star-rating .star-container {
+.star-container {
   position: relative;
-  width: 50px; /* igual ao tamanho da estrela */
-  height: 50px;
-  margin: 0 5px;
+  margin-right: 5px;
   cursor: pointer;
 }
 
-.star-rating .star-background,
-.star-rating .star-foreground {
+.star-background {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  font-size: 2rem;
-  transition: width 0.2s ease-in-out;
-  pointer-events: none; /* pra não impedir o clique */
+  right: 0;
+  bottom: 0;
+  color: #ccc;
 }
 
-.star-rating .star-background {
-  color: #ccc; /* Estrela cinza */
-  z-index: 1;
-}
-
-.star-rating .star-foreground {
-  color: #FFD700; /* Estrela amarela */
+.star-foreground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow: hidden;
-  z-index: 2;
-  white-space: nowrap;
+  color: gold; 
+}
+
+.star-background .FaStar,
+.star-foreground .FaStar {
+  font-size: 2rem;
+}
+
+.star-container.large .FaStar {
+  font-size: 2.5rem;
 }
