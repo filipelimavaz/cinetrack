@@ -1,5 +1,5 @@
 .perfil-page {
-  padding: 80px 2rem 2rem; /* Top padding para respeitar o header */
+  padding: 80px 2rem 2rem;
   box-sizing: border-box;
 }
 
@@ -16,34 +16,90 @@
   margin-top: 2rem;
 }
 
-.carrossel {
+.perfil-carousel-container {
+  position: relative;
+}
+
+.perfil-carrossel {
   display: flex;
   gap: 1rem;
   overflow-x: auto;
-  padding-bottom: 1rem;
+  padding: 5px;
   scroll-snap-type: x mandatory;
   scroll-padding: 1rem;
+  scrollbar-width: none;
+}
+
+.perfil-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0);
+  border: none;
+  border-radius: 20%;
+  color: white;
+  font-size: 24px;
+  padding: 0.7rem;
+  cursor: pointer;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.perfil-carousel-btn:hover {
+  opacity: 1;
+}
+
+.perfil-carousel-btn-left {
+  left: 3px;
+}
+
+.perfil-carousel-btn-right {
+  right: 3px;
 }
 
 .card {
+  min-width: 140px;
+  max-width: 140px;
+  height: 220px;
   flex: 0 0 auto;
-  background-color: #f4f4f4;
   border-radius: 8px;
-  padding: 0.5rem;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
   text-decoration: none;
   color: inherit;
-  width: 140px;
-  scroll-snap-align: start;
+  transition: transform 0.3s ease;
 }
 
-.poster {
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card .poster {
   width: 100%;
-  border-radius: 4px;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
 
-.nota {
-  font-weight: bold;
-  margin-top: 0.5rem;
-  font-size: 14px;
-  color: #333;
+  
+.card .nota {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 6px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
