@@ -1,12 +1,14 @@
+/* Estilos da Página de Detalhes da Avaliação */
 .detalhes-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  padding-top: 80px;
+  padding-top: 100px;
   max-width: 1200px;
   margin: 0 auto;
-  text-align: center;
+  color: white;
+  background: transparent;
 }
 
 header {
@@ -15,60 +17,164 @@ header {
   left: 0;
   right: 0;
   padding: 1rem 2rem;
-  background-color: #333;
+  background: rgba(15, 15, 25, 0.95);
+  backdrop-filter: blur(10px);
   color: white;
   z-index: 1000;
   font-size: 1.2rem;
   text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 header h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.8rem;
+  background: linear-gradient(to right, #4CAF50, #0095cf);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 0.5px;
 }
 
 .detalhes-conteudo {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 3rem;
   align-items: flex-start;
   flex-wrap: wrap;
+  background: rgba(24, 22, 37, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 900px;
 }
 
 .poster {
-  width: 150px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  width: 250px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.poster:hover {
+  transform: scale(1.03);
 }
 
 .informacoes {
   flex: 1;
   text-align: left;
   max-width: 600px;
+  min-width: 300px;
 }
 
 .titulo {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  font-weight: bold;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.status{
-  margin-bottom: 5px;
-  font-size: 1.1rem;
+.status {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.status strong {
+  color: white;
+  font-weight: 600;
 }
 
 .resenha {
-  margin-top: 5px;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .resenha h3 {
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: white;
 }
 
 .resenha p {
-  font-size: 1rem;
-  line-height: 1.5;
-  text-align: justify;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Estrelas de avaliação */
+.star-rating-container {
+  margin: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.star-rating-container .star {
+  color: #FFD700;
+  font-size: 1.8rem;
+}
+
+/* Mensagens de estado */
+.detalhes-container > p {
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 2rem;
+  background: rgba(24, 22, 37, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .detalhes-container {
+    padding-top: 90px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .detalhes-conteudo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+  
+  .informacoes {
+    text-align: center;
+  }
+  
+  .poster {
+    width: 200px;
+  }
+  
+  .resenha p {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo {
+    font-size: 1.8rem;
+  }
+  
+  .poster {
+    width: 180px;
+  }
+  
+  header h1 {
+    font-size: 1.5rem;
+  }
 }

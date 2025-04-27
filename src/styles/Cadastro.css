@@ -1,131 +1,253 @@
-.text-Cadastrar {
-    color: rgb(255, 255, 255);
-    font-size: 30px;
-    font-weight: 600;
-}
-
-.subtitle-cadastro {
-    font-size: 20px;
-    font-weight: 400;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 10px;
-}
-
-.center-main {
-    height: 80vh;
+/* Estilos Gerais */
+.main {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-    width: 50%;
+    overflow: hidden;
 }
 
-.input-group {
-    display: flex;
-    gap: 10px;
-    width: 100%;
-}
-
-.input-group input {
-    width: 48%;
-}
-
-.button-entrar-Cd {
-    width: 100%;
-    padding: 16px 0px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 10px;
-    outline: none;
-    color: rgb(255, 255, 255);
-    background: rgb(0, 149, 207);
-    cursor: pointer;
-    box-shadow: 0px 10px 40px rgba(32, 32, 32, 0.199);
-    transition: all 0.3s ease;
-}
-
-.button-entrar-Cd:hover {
-    background: rgb(0, 124, 207);
-}
-
-.button-cadastrar {
-    width: 100%;
-    padding: 16px 0px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 10px;
-    outline: none;
-    color: rgb(255, 255, 255);
-    background: green;
-    cursor: pointer;
-    box-shadow: 0px 10px 40px rgba(32, 32, 32, 0.199);
-    transition: all 0.3s ease;
-}
-
-.text {
-    color: white;
-}
-
+/* Seção Esquerda (Conteúdo) */
 .left-main {
-    height: 90vh;
+    width: 50%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 50%;
-    padding: 20px;
-    background: rgba(0, 0, 0);
-    border-radius: 10px;
-    box-shadow: 0px 10px 40px rgba(32, 32, 32, 0.199);
-    margin-bottom: 0;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
 }
 
 .welcome-text {
     color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 1.5rem 0;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .description {
-    font-size: medium;
-    color: white;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    text-align: center;
+    max-width: 80%;
+    line-height: 1.6;
+    margin: 0.5rem 0;
 }
 
 .bg-image {
-    height: 30vh;
+    height: 200px;
+    width: auto;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
 }
 
+/* Seção Direita (Formulário) */
+.center-main {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-cadastro {
+    width: 70%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem;
+    background: rgba(24, 22, 37, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-Cadastrar {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Campos do Formulário */
+.subtitle-cadastro {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 1.2rem;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.subtitle-cadastro:focus {
+    border-color: #0095cf;
+    box-shadow: 0 0 0 2px rgba(0, 149, 207, 0.2);
+}
+
+.subtitle-cadastro::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Grupos de Input */
 .nome-sobrenome-data {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     width: 100%;
+    margin-bottom: 1.2rem;
 }
 
 .input-terco {
-flex: 1;
-font-size: 20px;
-font-weight: 400;
-border: none;
-border-radius: 5px;
-padding: 10px;
+    flex: 1;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.input-terco:focus {
+    border-color: #0095cf;
+    box-shadow: 0 0 0 2px rgba(0, 149, 207, 0.2);
+}
+
+/* Botões */
+.button-cadastrar {
+    width: 100%;
+    padding: 14px 0;
+    margin: 1rem 0;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    color: white;
+    background: linear-gradient(to right, #4CAF50, #2E7D32);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-cadastrar:hover {
+    background: linear-gradient(to right, #2E7D32, #1B5E20);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
 
 .button-entrar-Cd {
-    padding: 5px 11px;
-    font-size: 16px;
-    border-radius: 5px;
-    background-color: rgb(0, 149, 207);
-    color: white;
+    padding: 10px 20px;
+    margin-top: 1rem;
     border: none;
+    border-radius: 8px;
+    outline: none;
+    color: white;
+    background: linear-gradient(to right, #0095cf, #007ccf);
     cursor: pointer;
-    transition: background 0.3s ease;
-    width: auto;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: inline-block;
 }
 
 .button-entrar-Cd:hover {
-    background-color: rgb(0, 124, 207);
+    background: linear-gradient(to right, #007ccf, #0066aa);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.text-botton {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.text {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.form-row {
+    width: 100%;
+    margin-bottom: 1.2rem;
+}
+
+.input-full {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+}
+
+.input-full:focus {
+    border-color: #0095cf;
+    box-shadow: 0 0 0 2px rgba(0, 149, 207, 0.2);
+}
+
+.form-label {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column-reverse;
+    }
+    
+    .left-main, 
+    .center-main {
+        width: 100%;
+        height: auto;
+        padding: 2rem 1rem;
+    }
+    
+    .form-cadastro {
+        width: 90%;
+        margin: 2rem 0;
+    }
+    
+    .bg-image {
+        height: 150px;
+    }
+    
+    .welcome-text {
+        font-size: 2rem;
+    }
+    
+    .nome-sobrenome-data {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .input-terco {
+        margin-bottom: 1rem;
+    }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/Cadastro.css'; 
+import '../styles/Cadastro.css';
 
 function Cadastro() {
   const [formData, setFormData] = useState({
@@ -82,53 +82,62 @@ function Cadastro() {
         <form onSubmit={handleSubmit} className="form-cadastro">
           <h2 className="text-Cadastrar">Cadastrar</h2>
 
-          <div className="nome-sobrenome-data">
+          <div className="form-row">
+            <label className="form-label">Nome</label>
             <input
               type="text"
               name="nome"
-              placeholder="Nome"
+              placeholder="Seu nome"
               value={formData.nome}
               onChange={handleChange}
-              className="subtitle-cadastro input-terco"
+              className="input-full"
             />
+
+            <label className="form-label">Sobrenome</label>
             <input
               type="text"
               name="sobrenome"
-              placeholder="Sobrenome"
+              placeholder="Seu sobrenome"
               value={formData.sobrenome}
               onChange={handleChange}
-              className="subtitle-cadastro input-terco"
+              className="input-full"
             />
+
+            <label className="form-label">Data de Nascimento</label>
             <input
               type="date"
               name="dataNascimento"
-              placeholder="Data de nascimento"
               value={formData.dataNascimento}
               onChange={handleChange}
-              className="subtitle-cadastro input-terco"
+              className="input-full"
             />
           </div>
-          
+
+          <label className="form-label">E-mail</label>
           <input
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="Seu e-mail"
             value={formData.email}
             onChange={handleChange}
             className="subtitle-cadastro"
           />
+
+          <label className="form-label">Nome de usuário</label>
           <input
             type="text"
             name="usuario"
-            placeholder="Nome de usuário"
+            placeholder="Nome que você usuará para entrar na plataforma"
             value={formData.usuario}
             onChange={handleChange}
             className="subtitle-cadastro"
           />
+
+          <label className="form-label">Senha</label>
           <input
             type="password"
             name="senha"
-            placeholder="Senha"
+            placeholder="Sua senha"
             value={formData.senha}
             onChange={handleChange}
             className="subtitle-cadastro"
@@ -141,19 +150,19 @@ function Cadastro() {
           <div className="text-botton">
             <p className="text">Já possui uma conta?</p>
             <button
-                className="button-entrar-Cd"
-                type="button"
-                onClick={() => navigate('/login')}
+              className="button-entrar-Cd"
+              type="button"
+              onClick={() => navigate('/login')}
             >
-                Entrar
+              Entrar
             </button>
-        </div>
+          </div>
 
         </form>
       </div>
       <div className='left-main'>
         <img
-          src="CineTrack.png" 
+          src="CineTrack.png"
           alt="Imagem de fundo"
           className="bg-image"
         />
@@ -164,7 +173,7 @@ function Cadastro() {
         <p className="description">
           Crie sua conta e tenha acesso a um mundo de entretenimento.
         </p>
-      </div>  
+      </div>
     </div>
   );
 }

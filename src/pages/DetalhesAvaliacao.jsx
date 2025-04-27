@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useUser } from '../context/UserContext'; // Importa contexto do usuário
+import { useUser } from '../context/UserContext';
 import '../styles/DetalhesAvaliacao.css';
 import StarRate from '../components/StarRate';
 
 
 const DetalhesAvaliacao = () => {
   const { tipo, id } = useParams();
-  const { user } = useUser(); // Obtém o usuário logado
+  const { user } = useUser();
   const [avaliacao, setAvaliacao] = useState(null);
 
   useEffect(() => {
-    if (!user) return; // Se não há usuário, não tenta buscar avaliação
+    if (!user) return;
 
     const chave = `avaliacao-${tipo}-${id}-${user.id}`;
     const avaliacaoSalva = JSON.parse(localStorage.getItem(chave));

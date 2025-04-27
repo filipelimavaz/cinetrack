@@ -1,105 +1,188 @@
+/* Estilos da Página de Detalhes */
 .detalhes-container {
-  padding: 7em 2rem 2rem 5rem;
-  max-width: 900px;
+  padding: 120px 2rem 3rem;
+  max-width: 1200px;
   margin: 0 auto;
-  background-color: #f9f9f9;
+  background: transparent;
+  color: white;
 }
 
 .detalhes-titulo {
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: 700;
   margin-bottom: 1.5rem;
-  color: #333;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .detalhes-main {
   display: flex;
-  gap: 2rem;
+  gap: 3rem;
   align-items: flex-start;
+  margin-bottom: 3rem;
+  background: rgba(24, 22, 37, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
 .detalhes-poster {
-  width: 300px;
-  height: 450px;
-  border-radius: 8px;
+  width: 350px;
+  height: auto;
+  border-radius: 12px;
   object-fit: cover;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.detalhes-poster:hover {
+  transform: scale(1.02);
 }
 
 .detalhes-info {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  text-align: left;
+  gap: 1.2rem;
+}
+
+.detalhes-info p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.detalhes-info strong {
+  color: white;
+  font-weight: 600;
 }
 
 .detalhes-overview {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   text-align: justify;
-  font-size: 1rem;
-  color: #444;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .detalhes-avaliacoes {
-  margin-top: 2rem;
+  margin-top: 3rem;
   width: 100%;
+  background: rgba(24, 22, 37, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
 .detalhes-avaliacoes h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .avaliacao-card {
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.avaliacao-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
 }
 
 .avaliacao-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .avaliador {
-  font-weight: bold;
-  color: #333;
+  font-weight: 600;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.avaliador strong {
+  color: #4CAF50;
+}
+
+.detalhes-star-rating {
+  display: flex;
+  align-items: center;
 }
 
 .avaliacao-resenha {
   text-align: left;
-  line-height: 1.5;
-  color: #444;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
   font-size: 1rem;
+  padding-left: 0.5rem;
 }
 
-@media (max-width: 768px) {
+/* Responsividade */
+@media (max-width: 992px) {
   .detalhes-main {
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
+  
+  .detalhes-overview {
+    text-align: center;
+  }
+  
+  .detalhes-info {
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .detalhes-container {
+    padding: 100px 1.5rem 2rem;
+  }
+  
+  .detalhes-titulo {
+    font-size: 2rem;
+  }
+  
   .detalhes-poster {
-    width: 200px;
-    height: auto;
+    width: 250px;
+  }
+  
+  .detalhes-main,
+  .detalhes-avaliacoes {
+    padding: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
   .detalhes-container {
-    padding: 4rem 1rem 1rem;
+    padding: 90px 1rem 1.5rem;
   }
-  .detalhes-poster {
-    width: 150px;
-    height: auto;
-  }
+  
   .detalhes-titulo {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
+  }
+  
+  .detalhes-poster {
+    width: 200px;
+  }
+  
+  .avaliacao-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 }
-

@@ -46,13 +46,13 @@ function Header() {
 
   return (
     <header className={`header ${showHeader ? '' : 'hidden'}`}>
-      <Link to="/home" className="logo">
+      <Link to="/home" className="logo-container">
         <img src={logo} alt="CineTrack Logo" className="logo-img" />
       </Link>
 
       {user && (
         <nav className="nav-links">
-          <form onSubmit={handleSearch}>
+          <form onSubmit={handleSearch} className="search-bar">
             <input
               type="text"
               placeholder="Buscar filme ou série"
@@ -68,7 +68,7 @@ function Header() {
 
           <div className="perfil-dropdown">
             <div className="perfil-icon" onClick={toggleDropdown}>
-              <span>P</span>
+              <span>{user.usuario.charAt(0).toUpperCase()}</span>
             </div>
             {isDropdownOpen && (
               <div className="dropdown-content">

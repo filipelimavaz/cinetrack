@@ -1,82 +1,138 @@
+/* Estilos da Página de Perfil */
 .perfil-page {
-  padding: 80px 2rem 2rem;
+  padding: 100px 2rem 3rem;
   box-sizing: border-box;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0c29 0%, #1a1a2e 100%);
+  color: white;
 }
 
 .perfil-container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: auto;
+  background: rgba(24, 22, 37, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
-.perfil-info p span {
-  font-weight: bold;
+.perfil-container h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
 }
 
-.avaliacoes-recentes {
-  margin-top: 2rem;
+.perfil-info {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.perfil-info p {
+  margin: 0.8rem 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.perfil-info span {
+  font-weight: 600;
+  color: white;
+}
+
+.assistidos-recentemente,
+.desejos-assistir {
+  margin: 3rem 0;
+}
+
+.assistidos-recentemente h3,
+.desejos-assistir h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .perfil-carousel-container {
   position: relative;
+  margin: 1.5rem 0;
+}
+
+.perfil-carousel-container:hover .perfil-carousel-btn {
+  opacity: 0.8;
 }
 
 .perfil-carrossel {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   overflow-x: auto;
-  padding: 5px;
+  padding: 15px 5px;
   scroll-snap-type: x mandatory;
   scroll-padding: 1rem;
   scrollbar-width: none;
+}
+
+.perfil-carrossel::-webkit-scrollbar {
+  display: none;
 }
 
 .perfil-carousel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
   border: none;
-  border-radius: 20%;
+  border-radius: 50%;
   color: white;
-  font-size: 24px;
-  padding: 0.7rem;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2;
   opacity: 0;
-  transition: opacity 0.3s ease, background-color 0.3s ease;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .perfil-carousel-btn:hover {
-  opacity: 1;
+  opacity: 1 !important;
+  background: rgba(0, 149, 207, 0.8);
 }
 
 .perfil-carousel-btn-left {
-  left: 3px;
+  left: 0;
 }
 
 .perfil-carousel-btn-right {
-  right: 3px;
+  right: 0;
 }
 
 .card {
-  min-width: 140px;
-  max-width: 140px;
-  height: 220px;
+  min-width: 160px;
+  max-width: 160px;
+  height: 240px;
   flex: 0 0 auto;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: flex-end;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   position: relative;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .card .poster {
@@ -90,16 +146,79 @@
   z-index: 0;
 }
 
-  
 .card .nota {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 6px 0;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 8px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  z-index: 1;
+}
+
+.card .titulo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  padding: 1rem 0.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+  z-index: 1;
+}
+
+.perfil-container > p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .perfil-page {
+    padding: 90px 1rem 2rem;
+  }
+  
+  .perfil-container {
+    padding: 1.5rem;
+  }
+  
+  .perfil-container h2 {
+    font-size: 1.8rem;
+  }
+  
+  .assistidos-recentemente h3,
+  .desejos-assistir h3 {
+    font-size: 1.4rem;
+  }
+  
+  .card {
+    min-width: 140px;
+    height: 210px;
+  }
+  
+  .perfil-carousel-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 480px) {
+  .perfil-container h2 {
+    font-size: 1.6rem;
+  }
+  
+  .card {
+    min-width: 120px;
+    height: 180px;
+  }
 }
