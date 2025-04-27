@@ -30,12 +30,29 @@ function Cadastro() {
     }
   };
 
+  const calcularIdade = (dataNascimento) => {
+    const nascimento = new Date(dataNascimento);
+    const hoje = new Date();
+    let idade = hoje.getFullYear() - nascimento.getFullYear();
+    const m = hoje.getMonth() - nascimento.getMonth();
+    if (m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())) {
+      idade--;
+    }
+    return idade;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const camposVazios = Object.values(formData).some(val => !val.trim());
     if (camposVazios) {
       alert('Preencha todos os campos.');
+      return;
+    }
+
+    const idade = calcularIdade(formData.dataNascimento);
+    if (idade < 18) {
+      alert('Você precisa ter 18 anos ou mais para se cadastrar.');
       return;
     }
 
@@ -61,7 +78,6 @@ function Cadastro() {
 
   return (
     <div className="main">
-       
       <div className="center-main">
         <form onSubmit={handleSubmit} className="form-cadastro">
           <h2 className="text-Cadastrar">Cadastrar</h2>
@@ -125,7 +141,6 @@ function Cadastro() {
               className="button-entrar-Cd"
               type="button"
               onClick={() => navigate('/login')}
-            
             >
               Entre
             </button>
@@ -133,21 +148,19 @@ function Cadastro() {
         </form>
       </div>
       <div className='left-main'>
-          <img
-            src="CineTrack.png" 
-            alt="Imagem de fundo"
-            className="bg-image"
-          />
-          <h1 className="welcome-text">Conheça já o CineTrack!</h1>
-          <p className="description">
-            O melhor lugar para acompanhar suas séries e filmes favoritos.
-          </p>
-          <p className="description">
-            Crie sua conta e tenha acesso a um mundo de entretenimento.
-          </p>
-
+        <img
+          src="CineTrack.png" 
+          alt="Imagem de fundo"
+          className="bg-image"
+        />
+        <h1 className="welcome-text">Conheça já o CineTrack!</h1>
+        <p className="description">
+          O melhor lugar para acompanhar suas séries e filmes favoritos.
+        </p>
+        <p className="description">
+          Crie sua conta e tenha acesso a um mundo de entretenimento.
+        </p>
       </div>  
-     
     </div>
   );
 }
