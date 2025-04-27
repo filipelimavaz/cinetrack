@@ -56,7 +56,7 @@ const Avaliacao = () => {
     localStorage.setItem(chave, JSON.stringify(avaliacao));
     alert('Avaliação salva com sucesso!');
 
-    navigate('/');
+    navigate(-1); // Voltar para a página anterior
   };
 
   if (carregando) return <p>Carregando...</p>;
@@ -75,20 +75,33 @@ const Avaliacao = () => {
         <div className="info-container">
           <h2 className="titulo-pagina">Avaliar: {titulo}</h2>
 
-          <StarRate
-            rate={nota}
-            onRate={setNota}
-          />
+          <label>
+          Status:
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+          >
+            <option value="visto">Visto</option>
+            <option value="dropado">Dropado</option>
+            <option value="deseja_assistir">Desejo Assistir</option>
+          </select>
+        </label>
+
+          {status !== 'deseja_assistir' && (
+            <StarRate
+              rate={nota}
+              onRate={setNota}
+            />
+          )}
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit}>
         <label>
           Resenha:
           <textarea
             value={resenha}
             onChange={(e) => setResenha(e.target.value)}
-            className="border p-2 w-full text-left"
             placeholder={
               status === 'deseja_assistir'
                 ? 'Escreva sua expectativa sobre o filme...'
@@ -97,23 +110,12 @@ const Avaliacao = () => {
           />
         </label>
 
-        <label>
-          Status:
-          <select
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            className="border p-2 w-full"
-          >
-            <option value="visto">Visto</option>
-            <option value="dropado">Dropado</option>
-            <option value="deseja_assistir">Desejo Assistir</option>
-          </select>
-        </label>
-
         <button type="submit" className="botao-salvar">
           Salvar Avaliação
-        </button>
+      </button>
+
       </form>
+
     </div>
   );
 };
