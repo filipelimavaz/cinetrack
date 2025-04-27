@@ -7,37 +7,7 @@
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 15px;
-  padding: 0px 20px 20px;
+  gap: 20px;
+  padding: 0px 20px;
   box-sizing: border-box;
-}
-
-.carousel-item {
-  text-align: center;
-}
-
-.poster-clickable {
-  width: 100%;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-}
-
-.poster-clickable:hover {
-  transform: scale(1.05);
-}
-
-.avaliar-btn {
-  display: inline-block;
-  margin-top: 5px;
-  padding: 6px 12px;
-  background-color: #ff4757;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  transition: background-color 0.3s ease;
-}
-
-.avaliar-btn:hover {
-  background-color: #e84118;
-}
+  }

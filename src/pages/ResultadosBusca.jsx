@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import '../styles/ResultadoBusca.css';
+import '../styles/Home.css';
+
 
 function ResultadoBusca() {
   const location = useLocation();
