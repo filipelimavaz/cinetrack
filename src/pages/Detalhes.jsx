@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import '../styles/Detalhes.css';
-import StarRate from '../components/starRate';
+import StarRate from '../components/StarRate';
 
 const Detalhes = () => {
   const { tipo, id } = useParams();
@@ -74,10 +74,8 @@ const Detalhes = () => {
           alt={conteudo.title || conteudo.name}
         />
 
-        
-
         <div className="detalhes-info">
-        <h1 className="detalhes-titulo">{conteudo.title || conteudo.name}</h1>
+          <h1 className="detalhes-titulo">{conteudo.title || conteudo.name}</h1>
           {tipoAPI === 'movie' ? (
             <p><strong>Diretor(es):</strong> {diretores}</p>
           ) : (
@@ -89,25 +87,30 @@ const Detalhes = () => {
           </p>
         </div>
       </div>
+
       <div className="detalhes-avaliacoes">
         <h2>Avaliações</h2>
-            
+
         {avaliacoes.length === 0 && <p>Nenhuma avaliação ainda.</p>}
+
         {avaliacoes.map((av, idx) => (
-        <div key={idx} className="avaliacao-card">
-         <div className="avaliacao-header">
-            <span className="avaliador">
-              <strong>{av.usuario}</strong> {av.status && ` (${av.status})`}
-            </span>
-            {av.nota != null && (
-            <span className="avaliacao-nota">Nota: {av.nota}</span>
-            )}
-          </div>
-          <p className="avaliacao-resenha">{av.resenha}</p>
+          <div key={idx} className="avaliacao-card">
+            <div className="avaliacao-header">
+              <span className="avaliador">
+                <strong>{av.usuario} {av.status && ` (${av.status})`}</strong> 
+              </span>
+
+              {av.nota != null && (
+                <div className="detalhes-star-rating">
+                  <StarRate rate={av.nota} readonly={true} size={20} />
+                </div>
+              )}
+            </div>
+              <p className="avaliacao-resenha">{av.resenha}</p>
           </div>
         ))}
-        </div>
       </div>
+    </div>
   );
 };
 
