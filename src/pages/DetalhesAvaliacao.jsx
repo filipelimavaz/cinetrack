@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useUser } from '../context/UserContext'; // Importa contexto do usuário
 import '../styles/DetalhesAvaliacao.css';
+import StarRate from '../components/StarRate';
+
 
 const DetalhesAvaliacao = () => {
   const { tipo, id } = useParams();
@@ -53,8 +55,8 @@ const DetalhesAvaliacao = () => {
           </div>
 
           {avaliacao.status !== 'deseja_assistir' && (
-            <div className="nota">
-              <strong>Nota:</strong> {avaliacao.nota}
+              <div>
+              <StarRate rate={avaliacao.nota} onRate={() => {}} readonly={true} size={20}/>
             </div>
           )}
 

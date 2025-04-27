@@ -1,4 +1,3 @@
-/* Container principal */
 .detalhes-container {
   display: flex;
   flex-direction: column;
@@ -10,8 +9,6 @@
   text-align: center;
 }
 
-  
-/* Definições para o header */
 header {
   position: fixed;
   top: 0;
@@ -20,35 +17,34 @@ header {
   padding: 1rem 2rem;
   background-color: #333;
   color: white;
-  z-index: 1000; /* Para garantir que o header fique acima de tudo */
+  z-index: 1000;
   font-size: 1.2rem;
-  text-align: center; /* Centraliza o título do header */
+  text-align: center;
 }
 
 header h1 {
   margin: 0;
-  font-size: 2rem; /* Tamanho maior para o título */
+  font-size: 2rem;
 }
 
-/* Definindo o layout do conteúdo */
 .detalhes-conteudo {
   display: flex;
-  justify-content: center; /* Centraliza o conteúdo dentro do flex */
+  justify-content: center;
   gap: 2rem;
   align-items: flex-start;
-  flex-wrap: wrap; /* Ajusta o layout para responsividade */
+  flex-wrap: wrap;
 }
 
 .poster {
-  width: 150px; /* Tamanho menor para o poster */
+  width: 150px;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .informacoes {
-  flex: 1; /* Preenche o restante do espaço disponível */
-  text-align: left; /* Alinha as informações à esquerda */
-  max-width: 600px; /* Limita a largura das informações */
+  flex: 1;
+  text-align: left;
+  max-width: 600px;
 }
 
 .titulo {
@@ -57,15 +53,13 @@ header h1 {
   font-weight: bold;
 }
 
-.nota {
-  margin-top: 1rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #4caf50;
+.status{
+  margin-bottom: 5px;
+  font-size: 1.1rem;
 }
 
 .resenha {
-  margin-top: 1.5rem;
+  margin-top: 5px;
 }
 
 .resenha h3 {
@@ -76,5 +70,5 @@ header h1 {
 .resenha p {
   font-size: 1rem;
   line-height: 1.5;
-  text-align: justify; /* Justifica a resenha para melhor leitura */
+  text-align: justify;
 }
