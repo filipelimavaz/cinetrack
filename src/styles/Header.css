@@ -15,7 +15,7 @@ body {
     left: 0;
     width: 100%;
     z-index: 1000;
-    box-sizing: border-box; /* Para garantir que o padding não ultrapasse a largura da tela */
+    box-sizing: border-box;
   }
   .logo-img {
     height: 80px; 
@@ -33,9 +33,9 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
-    flex-wrap: wrap; /* Adiciona quebra de linha se necessário */
-    justify-content: flex-end; /* Garante que os links fiquem alinhados à direita */
-    width: 100%; /* Garante que os links usem toda a largura disponível */
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 100%;
     padding-right: 10%;
   }
   

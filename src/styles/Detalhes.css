@@ -1,6 +1,6 @@
 /* Container principal */
 .detalhes-container {
-  padding: 5rem 2rem 2rem;  /* Espaço para header fixo */
+  padding: 7rem 2rem 2rem 5rem;  /* Espaço para header fixo */
   max-width: 900px;
   margin: 0 auto;
 }
