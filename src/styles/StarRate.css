@@ -5,7 +5,6 @@
 
 .star-container {
   position: relative;
-  margin-right: 5px;
   cursor: pointer;
 }
 
@@ -15,7 +14,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  color: #ccc;
+  color: grey;
 }
 
 .star-foreground {
