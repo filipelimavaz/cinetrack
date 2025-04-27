@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useUser } from '../context/UserContext'; // Importa o contexto do usuário
+import { useUser } from '../context/UserContext';
 import '../styles/Listas.css';
+import StarRate from '../components/StarRate';
 
 const Listas = () => {
   const [avaliacoes, setAvaliacoes] = useState({
@@ -10,7 +11,7 @@ const Listas = () => {
     deseja_assistir: [],
   });
 
-  const { user } = useUser(); // Acessa o usuário logado
+  const { user } = useUser();
 
   useEffect(() => {
     if (!user) return;
@@ -20,14 +21,12 @@ const Listas = () => {
       if (key.startsWith('avaliacao-')) {
         const avaliacao = JSON.parse(localStorage.getItem(key));
 
-        // Só adiciona se a avaliação for do usuário logado
         if (key.endsWith(`-${user.id}`)) {
           allAvaliacoes.push(avaliacao);
         }
       }
     });
 
-    // Organiza as avaliações por status
     const categorias = {
       visto: [],
       dropado: [],
@@ -53,27 +52,29 @@ const Listas = () => {
     }
 
     return (
-      <div className="carrossel">
-        {avaliacoes.map((avaliacao, index) => (
-          <Link
-            key={index}
-            to={`/detalhesAvaliacao/${avaliacao.tipo}/${avaliacao.id}`}
-            className="card"
-            style={{
-              width: '140px',
-              textAlign: 'center',
-            }}
-          >
-            <img
-              src={`https://image.tmdb.org/t/p/w200${avaliacao.poster_path}`}
-              alt={avaliacao.titulo}
-              className="poster"
-            />
-            {avaliacao.status !== 'deseja_assistir' && (
-              <p className="nota">Nota: {avaliacao.nota}</p>
-            )}
-          </Link>
-        ))}
+      <div className="lista-carousel-container">
+        <button className="lista-carrossel-btn lista-carrossel-btn-left" onClick={() => scrollLeft(categoria)}>&lt;</button>
+        <div className="lista-carousel" ref={el => carrosselRefs.current[categoria] = el}>
+          {avaliacoes.map((avaliacao, index) => (
+            <Link
+              key={index}
+              to={`/detalhesAvaliacao/${avaliacao.tipo}/${avaliacao.id}`}
+              className="lista-carousel-item"
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w200${avaliacao.poster_path}`}
+                alt={avaliacao.titulo}
+                className="poster-clickable"
+              />
+              {avaliacao.status !== 'deseja_assistir' && (
+                <div className="nota">
+                  <StarRate rate={avaliacao.nota} onRate={() => {}} readonly={true} size={20}/>
+                </div>
+              )}
+            </Link>
+          ))}
+        </div>
+        <button className="lista-carrossel-btn lista-carrossel-btn-right" onClick={() => scrollRight(categoria)}>&gt;</button>
       </div>
     );
   };
@@ -82,6 +83,16 @@ const Listas = () => {
     return <p>Você precisa estar logado para ver suas listas.</p>;
   }
 
+  const carrosselRefs = useRef({});
+
+  const scrollLeft = (id) => {
+    carrosselRefs.current[id]?.scrollBy({ left: -1100, behavior: 'smooth' });
+  };
+
+  const scrollRight = (id) => {
+    carrosselRefs.current[id]?.scrollBy({ left: 1100, behavior: 'smooth' });
+  };
+
   return (
     <div className="listas-container">
       <h2 className="titulo-pagina">Suas Listas</h2>
@@ -89,16 +100,19 @@ const Listas = () => {
       <div className="secao-lista">
         <h3 className="titulo-categoria">Vistos</h3>
         {renderList('visto', avaliacoes.visto)}
+        <button className="botao-lista">Ver mais</button>
       </div>
 
       <div className="secao-lista">
         <h3 className="titulo-categoria">Dropados</h3>
         {renderList('dropado', avaliacoes.dropado)}
+        <button className="botao-lista">Ver mais</button>
       </div>
 
       <div className="secao-lista">
         <h3 className="titulo-categoria">Desejo Assistir</h3>
         {renderList('deseja_assistir', avaliacoes.deseja_assistir)}
+        <button className="botao-lista">Ver mais</button>
       </div>
     </div>
   );
