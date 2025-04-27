@@ -1,19 +1,37 @@
-/* src/styles/StarRate.css */
 .star-rating {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.star-rating .star {
-  font-size: 2rem;
-  color: #ccc; /* Default color for unselected stars */
+.star-rating .star-container {
+  position: relative;
+  width: 50px; /* igual ao tamanho da estrela */
+  height: 50px;
   margin: 0 5px;
-}
-.star-rating .star.selected {
-  color: #f39c12; /* Color for selected stars */
-}
-.star {
   cursor: pointer;
-  transition: color 0.2s ease-in-out;
+}
+
+.star-rating .star-background,
+.star-rating .star-foreground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+  transition: width 0.2s ease-in-out;
+  pointer-events: none; /* pra não impedir o clique */
+}
+
+.star-rating .star-background {
+  color: #ccc; /* Estrela cinza */
+  z-index: 1;
+}
+
+.star-rating .star-foreground {
+  color: #FFD700; /* Estrela amarela */
+  overflow: hidden;
+  z-index: 2;
+  white-space: nowrap;
 }
