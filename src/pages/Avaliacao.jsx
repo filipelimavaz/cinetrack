@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import '../styles/Avaliacao.css';
-import StarRate from '../components/starRate';
+import StarRate from '../components/StarRate';
 
 const Avaliacao = () => {
   const { tipo, id } = useParams();
@@ -76,22 +76,26 @@ const Avaliacao = () => {
           <h2 className="titulo-pagina">Avaliar: {titulo}</h2>
 
           <label>
-          Status:
-          <select
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-          >
-            <option value="visto">Visto</option>
-            <option value="dropado">Dropado</option>
-            <option value="deseja_assistir">Desejo Assistir</option>
-          </select>
-        </label>
+            Status:
+            <select
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+            >
+              <option value="visto">Visto</option>
+              <option value="dropado">Dropado</option>
+              <option value="deseja_assistir">Desejo Assistir</option>
+            </select>
+          </label>
 
           {status !== 'deseja_assistir' && (
-            <StarRate
-              rate={nota}
-              onRate={setNota}
-            />
+            <div className="avaliacao-stars">
+              <StarRate
+                rate={nota}
+                onRate={setNota}
+                readonly={false}
+                size={60}
+              />
+            </div>
           )}
         </div>
       </div>
@@ -112,10 +116,8 @@ const Avaliacao = () => {
 
         <button type="submit" className="botao-salvar">
           Salvar Avaliação
-      </button>
-
+        </button>
       </form>
-
     </div>
   );
 };
