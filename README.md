@@ -39,7 +39,7 @@ CineTrack é uma rede social para cinéfilos desenvolvida como projeto para a di
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/cinetrack.git
+   git clone https://github.com/filipelimavaz/cinetrack.git
    cd cinetrack
    ```
 
