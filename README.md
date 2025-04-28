@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 <p align="center" style="background-color:black; padding:20px;">
-  <img src="./src/assets/CineTrack.png" alt="CineTrack Logo" width="300">
+  <img src="./src/assets/CineTrack_fundo_preto.png" alt="CineTrack Logo" width="300">
 </p>
 
 ## ✨ Visão Geral
