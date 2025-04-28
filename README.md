@@ -3,7 +3,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5dd69369-61d8-4945-ad65-6be7b5e6ffcb/deploy-status)](https://app.netlify.com/sites/cinetrack-pas/deploys)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-<p align="center" style="background-color:black; padding:20px;">
+<p align="center" style="background-color:black; width:100%;">
   <img src="./src/assets/CineTrack_fundo_preto.jpeg" alt="CineTrack Logo" width="300">
 </p>
 
