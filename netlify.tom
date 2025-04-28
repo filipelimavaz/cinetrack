@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[headers]]
+for = "/*.js"
+[headers.values]
+"Content-Type" = "application/javascript"
+"X-Content-Type-Options" = "nosniff"
+
+[[headers]]
+for = "/*.jsx"
+[headers.values]
+"Content-Type" = "text/jsx"
+"X-Content-Type-Options" = "nosniff"
