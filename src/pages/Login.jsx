@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import '../styles/Login.css';
+import logo from '../assets/CineTrack.png'; 
 
 function Login() {
   const [usuario, setUsuario] = useState('');
@@ -69,7 +70,7 @@ function Login() {
 
       <div className="left-login">
         <img
-          src="CineTrack.png" 
+          src={logo}
           alt="Imagem de fundo"
           className="bg-image"
         />
