@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Cadastro.css';
+import logo from '../assets/CineTrack.png'; 
 
 function Cadastro() {
   const [formData, setFormData] = useState({
@@ -9,7 +10,8 @@ function Cadastro() {
     email: '',
     dataNascimento: '',
     usuario: '',
-    senha: ''
+    senha: '',
+    confirmarSenha: ''
   });
 
   const [errors, setErrors] = useState({
@@ -18,7 +20,8 @@ function Cadastro() {
     email: '',
     dataNascimento: '',
     usuario: '',
-    senha: ''
+    senha: '',
+    confirmarSenha: ''
   });
 
   const navigate = useNavigate();
@@ -61,7 +64,7 @@ function Cadastro() {
     const newErrors = { ...errors };
 
     Object.keys(formData).forEach(key => {
-      if (!formData[key].trim()) {
+      if (!formData[key].trim() && key !== 'confirmarSenha') {
         newErrors[key] = 'Este campo é obrigatório';
         isValid = false;
       }
@@ -82,6 +85,16 @@ function Cadastro() {
       isValid = false;
     }
 
+    if (formData.senha.length < 6) {
+      newErrors.senha = 'A senha deve ter pelo menos 6 caracteres';
+      isValid = false;
+    }
+
+    if (formData.senha !== formData.confirmarSenha) {
+      newErrors.confirmarSenha = 'As senhas não coincidem';
+      isValid = false;
+    }
+
     setErrors(newErrors);
     return isValid;
   };
@@ -95,7 +108,12 @@ function Cadastro() {
 
     const novoUsuario = {
       id: gerarIdUnico(),
-      ...formData
+      nome: formData.nome,
+      sobrenome: formData.sobrenome,
+      email: formData.email,
+      dataNascimento: formData.dataNascimento,
+      usuario: formData.usuario,
+      senha: formData.senha
     };
 
     const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
@@ -171,12 +189,23 @@ function Cadastro() {
           <input
             type="password"
             name="senha"
-            placeholder="Sua senha"
+            placeholder="Sua senha (mínimo 6 caracteres)"
             value={formData.senha}
             onChange={handleChange}
             className={`subtitle-cadastro ${errors.senha ? 'input-error' : ''}`}
           />
           {errors.senha && <p className="error-message">{errors.senha}</p>}
+
+          <label className="form-label">Confirmar Senha</label>
+          <input
+            type="password"
+            name="confirmarSenha"
+            placeholder="Confirme sua senha"
+            value={formData.confirmarSenha}
+            onChange={handleChange}
+            className={`subtitle-cadastro ${errors.confirmarSenha ? 'input-error' : ''}`}
+          />
+          {errors.confirmarSenha && <p className="error-message">{errors.confirmarSenha}</p>}
 
           <button type="submit" className='button-cadastrar'>
             Cadastrar
@@ -196,7 +225,7 @@ function Cadastro() {
       </div>
       <div className='left-main'>
         <img
-          src="CineTrack.png"
+          src={logo}
           alt="Imagem de fundo"
           className="bg-image"
         />
