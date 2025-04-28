@@ -3,8 +3,8 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5dd69369-61d8-4945-ad65-6be7b5e6ffcb/deploy-status)](https://app.netlify.com/sites/cinetrack-pas/deploys)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-<p align="center">
-  <img src="https://via.placeholder.com/300x150?text=CineTrack+Logo" alt="CineTrack Logo" width="300">
+<p align="center" style="background-color:black; padding:20px;">
+  <img src="./src/assets/CineTrack.png" alt="CineTrack Logo" width="300">
 </p>
 
 ## ✨ Visão Geral
@@ -22,7 +22,7 @@ CineTrack é uma rede social para cinéfilos desenvolvida como projeto para a di
 
 | Login | Dashboard | Perfil |
 |-------|-----------|--------|
-| ![Tela de Login](./assets/imgs/login.png) | ![Dashboard](./assets/imgs/dashboard.png) | ![Perfil](./assets/imgs/perfil.png) |
+| ![Tela de Login](./src/assets/imgs/login.png) | ![Dashboard](./src/assets/imgs/dashboard.png) | ![Perfil](./src/assets/imgs/perfil.png) |
 
 ## 🛠 Tecnologias Utilizadas
 
