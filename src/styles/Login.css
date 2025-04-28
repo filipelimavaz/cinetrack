@@ -86,7 +86,7 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.subtitle-login, 
+.subtitle-login,
 .subtitle-senha {
     color: rgba(255, 255, 255, 0.8);
     font-size: 0.9rem;
@@ -94,7 +94,7 @@ body {
     display: block;
 }
 
-.box-user, 
+.box-user,
 .box-senha {
     padding: 12px 15px;
     border-radius: 8px;
@@ -107,7 +107,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.box-user:focus, 
+.box-user:focus,
 .box-senha:focus {
     border-color: #4CAF50;
     box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
@@ -166,28 +166,127 @@ body {
     text-align: center;
 }
 
+/* Estilos do Toast de Erro */
+.error-toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 90%;
+    max-width: 400px;
+    animation: slideDown 0.4s ease forwards;
+}
+
+.error-toast-content {
+    background-color: rgba(255, 99, 71, 0.9);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.error-toast-message {
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.error-icon {
+    background: white;
+    color: #ff6347;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.error-toast-close {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 1rem;
+    padding: 0 0.3rem;
+    transition: transform 0.2s ease;
+}
+
+.error-toast-close:hover {
+    transform: scale(1.2);
+}
+
+/* Animações */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%, -30px);
+    }
+}
+
+.fade-out {
+    animation: slideUp 0.5s ease forwards !important;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     .main {
         flex-direction: column;
     }
-    
-    .left-login, 
+
+    .left-login,
     .right-login {
         width: 100%;
         height: auto;
         padding: 2rem 1rem;
     }
-    
+
     .form-login {
         width: 90%;
         margin: 2rem 0;
     }
-    
+
     .bg-image {
         height: 150px;
     }
-    
+
     .welcome-text {
         font-size: 2rem;
     }

@@ -12,20 +12,35 @@ function Cadastro() {
     senha: ''
   });
 
+  const [errors, setErrors] = useState({
+    nome: '',
+    sobrenome: '',
+    email: '',
+    dataNascimento: '',
+    usuario: '',
+    senha: ''
+  });
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }));
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
 
   const gerarIdUnico = () => {
     if (crypto?.randomUUID) {
-      return crypto.randomUUID(); // Gera um UUID v4
+      return crypto.randomUUID();
     } else {
-      // Fallback: timestamp + número aleatório
       return `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
     }
   };
@@ -41,26 +56,40 @@ function Cadastro() {
     return idade;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = { ...errors };
 
-    const camposVazios = Object.values(formData).some(val => !val.trim());
-    if (camposVazios) {
-      alert('Preencha todos os campos.');
-      return;
-    }
+    Object.keys(formData).forEach(key => {
+      if (!formData[key].trim()) {
+        newErrors[key] = 'Este campo é obrigatório';
+        isValid = false;
+      }
+    });
 
-    const idade = calcularIdade(formData.dataNascimento);
-    if (idade < 18) {
-      alert('Você precisa ter 18 anos ou mais para se cadastrar.');
-      return;
+    if (formData.dataNascimento) {
+      const idade = calcularIdade(formData.dataNascimento);
+      if (idade < 18) {
+        newErrors.dataNascimento = 'Você precisa ter 18 anos ou mais';
+        isValid = false;
+      }
     }
 
     const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-
     const usuarioExistente = usuarios.find(u => u.usuario === formData.usuario);
     if (usuarioExistente) {
-      alert('Nome de usuário já cadastrado!');
+      newErrors.usuario = 'Nome de usuário já cadastrado';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
       return;
     }
 
@@ -69,10 +98,10 @@ function Cadastro() {
       ...formData
     };
 
+    const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
     usuarios.push(novoUsuario);
     localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
-    alert(`Cadastro realizado com sucesso!`);
     navigate('/login');
   };
 
@@ -90,8 +119,9 @@ function Cadastro() {
               placeholder="Seu nome"
               value={formData.nome}
               onChange={handleChange}
-              className="input-full"
+              className={`input-full ${errors.nome ? 'input-error' : ''}`}
             />
+            {errors.nome && <p className="error-message">{errors.nome}</p>}
 
             <label className="form-label">Sobrenome</label>
             <input
@@ -100,8 +130,9 @@ function Cadastro() {
               placeholder="Seu sobrenome"
               value={formData.sobrenome}
               onChange={handleChange}
-              className="input-full"
+              className={`input-full ${errors.sobrenome ? 'input-error' : ''}`}
             />
+            {errors.sobrenome && <p className="error-message">{errors.sobrenome}</p>}
 
             <label className="form-label">Data de Nascimento</label>
             <input
@@ -109,8 +140,9 @@ function Cadastro() {
               name="dataNascimento"
               value={formData.dataNascimento}
               onChange={handleChange}
-              className="input-full"
+              className={`input-full ${errors.dataNascimento ? 'input-error' : ''}`}
             />
+            {errors.dataNascimento && <p className="error-message">{errors.dataNascimento}</p>}
           </div>
 
           <label className="form-label">E-mail</label>
@@ -120,18 +152,20 @@ function Cadastro() {
             placeholder="Seu e-mail"
             value={formData.email}
             onChange={handleChange}
-            className="subtitle-cadastro"
+            className={`subtitle-cadastro ${errors.email ? 'input-error' : ''}`}
           />
+          {errors.email && <p className="error-message">{errors.email}</p>}
 
           <label className="form-label">Nome de usuário</label>
           <input
             type="text"
             name="usuario"
-            placeholder="Nome que você usuará para entrar na plataforma"
+            placeholder="Nome que você usará para entrar na plataforma"
             value={formData.usuario}
             onChange={handleChange}
-            className="subtitle-cadastro"
+            className={`subtitle-cadastro ${errors.usuario ? 'input-error' : ''}`}
           />
+          {errors.usuario && <p className="error-message">{errors.usuario}</p>}
 
           <label className="form-label">Senha</label>
           <input
@@ -140,8 +174,9 @@ function Cadastro() {
             placeholder="Sua senha"
             value={formData.senha}
             onChange={handleChange}
-            className="subtitle-cadastro"
+            className={`subtitle-cadastro ${errors.senha ? 'input-error' : ''}`}
           />
+          {errors.senha && <p className="error-message">{errors.senha}</p>}
 
           <button type="submit" className='button-cadastrar'>
             Cadastrar
@@ -157,7 +192,6 @@ function Cadastro() {
               Entrar
             </button>
           </div>
-
         </form>
       </div>
       <div className='left-main'>

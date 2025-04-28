@@ -216,37 +216,72 @@
     margin-bottom: 0.5rem;
 }
 
+/* Estilos para mensagens de erro */
+.error-message {
+    color: #ff6b6b;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.input-error {
+    border-color: #ff6b6b !important;
+    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2) !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.input-full,
+.subtitle-cadastro {
+    margin-bottom: 0.3rem;
+}
+
+.form-row {
+    margin-bottom: 0.5rem;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     .main {
         flex-direction: column-reverse;
     }
-    
-    .left-main, 
+
+    .left-main,
     .center-main {
         width: 100%;
         height: auto;
         padding: 2rem 1rem;
     }
-    
+
     .form-cadastro {
         width: 90%;
         margin: 2rem 0;
     }
-    
+
     .bg-image {
         height: 150px;
     }
-    
+
     .welcome-text {
         font-size: 2rem;
     }
-    
+
     .nome-sobrenome-data {
         flex-direction: column;
         gap: 0;
     }
-    
+
     .input-terco {
         margin-bottom: 1rem;
     }
